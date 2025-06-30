@@ -21,19 +21,19 @@ Créer une plateforme complète permettant :
 - l’**interopérabilité** entre plusieurs systèmes (Hive, MongoDB, HBase)
 - la **scalabilité et l’automatisation** des traitements de données (via Spark)
 
+STAR TOPOLOGY 
+
 ---
 
 ## 🧱 Technologies utilisées
 
-| Catégorie        | Technologies / Outils                       |
-|------------------|---------------------------------------------|
-| 🖥️ Frontend       | Next.js, D3.js, i18n, Axios, Tailwind        |
-| 🔄 Backend        | Node.js, Express.js (pour les APIs Hive/Mongo/HBase) |
-| 🧪 Traitement      | Apache Spark (PySpark), Logging              |
-| 🧊 Stockage Big Data | Hadoop HDFS, Hive, MongoDB, HBase           |
-| 🔐 Authentification| NextAuth.js + JWT                           |
-| 🖥️ VM / Provision | Vagrant, VirtualBox                         |
-| 🌐 Réseau         | VPN, protocole sécurisé (HTTPS, SSH, etc.)   |
+| Catégorie          | Technologies / Outils                                  |
+|------------------  |---------------------------------------------           |
+| 🖥️ Frontend        | Next.js, D3.js, i18n, Axios, Tailwind                  |
+| 🔄 Backend         | Node.js, Express.js (pour les APIs Hive/Mongo/HBase)   |
+| 🔐 Authentification| NextAuth.js + JWT                                      |
+| 🖥️ VM / Provision  | Vagrant, VirtualBox                                    |
+| 🌐 Réseau          | VPN, protocole sécurisé (HTTPS, SSH, etc.)             |
 
 ---
 
@@ -41,6 +41,10 @@ Créer une plateforme complète permettant :
 
 📄 **Lien vers le timesheet de planification**:  
 👉 [Google Sheets - Timesheet du projet](https://docs.google.com/spreadsheets/d/1JWz_dfxnkArTi9TRiZZPBILCvF8YHNExeXLZ4VoAGos/edit?gid=484971601#gid=484971601)
+
+[Diagramme de gantt](https://docs.google.com/spreadsheets/d/1z16lRxS4UNZ_0dSJzX2hVAvIBH-Qd9ygO6pLdOZd554/edit?gid=1330547112#gid=1330547112)
+
+[Slide de minimum d'information](https://docs.google.com/presentation/d/1pQC7ZwHdDugI1H4Ev_qz6J3Q7Yy6Jy-yy4y1MbC2p_g/edit?slide=id.gc6f9e470d_0_37#slide=id.gc6f9e470d_0_37)
 
 📄 **Lien vers .box de VM**:  
 👉 []()
