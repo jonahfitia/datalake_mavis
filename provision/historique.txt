@@ -5,3 +5,4 @@ HIVE 3.1.3
 SPARK 3.4.2
 Mongo 6.0.24
 hbase 2.5.6
+
