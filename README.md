@@ -1,7 +1,7 @@
 # 🎯 Projet : DataLake Mavis
 
 ## 📌 Titre complet
-**Réalisation d’un Data Lake interopérable pour analyse et Visualisation des données médicales via application web**
+**Réalisation d’un Data Lake interopérable pour analyse et Visualisation des données médicales via application web**
 
 ---
 

@@ -1,51 +1,44 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { signIn, SignInOptions } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export default function LoginForm() {
-  const { register, handleSubmit } = useForm();
-  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const onSubmit = async (data: SignInOptions | undefined) => {
-    const res = await signIn("credentials", { redirect: false, ...data });
-    if (res?.error) {
-      toast.error("Échec de connexion");
-    } else {
-      router.push("/dashboard");
-    }
+  const handleLogin = async () => {
+    const res = await signIn("credentials", {
+      redirect: true,
+      callbackUrl: "/dashboard",
+      username,
+      password,
+    });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-8 rounded shadow-md w-80"
-      >
-        <h1 className="text-xl mb-4">Connexion</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="w-full max-w-xs space-y-4">
         <input
-          className="border p-2 w-full mb-3"
-          placeholder="Email"
-          {...register("email")}
-          type="email"
-          required
+          className="w-full p-2 border rounded"
+          placeholder="Nom d'utilisateur"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          className="border p-2 w-full mb-3"
-          placeholder="Mot de passe"
           type="password"
-          {...register("password")}
-          required
+          className="w-full p-2 border rounded"
+          placeholder="Mot de passe"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 px-4 rounded w-full"
+          className="w-full bg-blue-600 text-white p-2 rounded"
+          onClick={handleLogin}
         >
           Se connecter
         </button>
-      </form>
+      </div>
     </div>
   );
 }

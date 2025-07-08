@@ -1,5 +1,5 @@
 ----- installation ------
-JAVA 11 (+++ 8)
+JAVA 8
 HADOOP 3.3.6
 HIVE 3.1.3
 SPARK 3.4.2
