@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-// Interface pour les données du graphique
+
 interface DataPoint {
   date: Date;
   value: number;
@@ -15,7 +15,7 @@ export default function TimeSeriesChart() {
   useEffect(() => {
     if (!ref.current) return;
 
-    // Données fictives : Pression artérielle systolique (mmHg) sur 7 jours
+    
     const data: DataPoint[] = [
       { date: new Date("2025-07-01"), value: 120 },
       { date: new Date("2025-07-02"), value: 125 },
@@ -38,7 +38,7 @@ export default function TimeSeriesChart() {
       left: 50,
     };
 
-    // Échelles
+    
     const x = d3
       .scaleTime()
       .domain(d3.extent(data, (d: DataPoint) => d.date) as [Date, Date])
@@ -52,13 +52,13 @@ export default function TimeSeriesChart() {
       ])
       .range([height - margin.bottom, margin.top]);
 
-    // Générateur de ligne
+    
     const line = d3
       .line<DataPoint>()
       .x((d) => x(d.date))
       .y((d) => y(d.value));
 
-    // Axes
+    
     svg
       .append("g")
       .attr("class", "x-axis")
@@ -86,7 +86,7 @@ export default function TimeSeriesChart() {
       .style("text-anchor", "end")
       .text("Blood Pressure (mmHg)");
 
-    // Chemin de la ligne
+    
     svg
       .append("path")
       .datum(data)
@@ -96,7 +96,7 @@ export default function TimeSeriesChart() {
       .attr("stroke-width", 2)
       .attr("d", line);
 
-    // Comportement de zoom
+    
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([1, 8])
@@ -106,26 +106,39 @@ export default function TimeSeriesChart() {
       ])
       .on("zoom", (event: d3.D3ZoomEvent<SVGSVGElement, unknown>) => {
         const newX = event.transform.rescaleX(x);
+
+        
         svg
           .select<SVGGElement>(".x-axis")
           .call(
             d3
               .axisBottom<Date>(newX)
-              .tickFormat((domainValue: Date, index: number) =>
+              .tickFormat((domainValue: Date) =>
                 d3.timeFormat("%Y-%m-%d")(domainValue)
               )
           );
+
+        
+        const lineZoomed = d3
+          .line<DataPoint>()
+          .x((d) => newX(d.date))
+          .y((d) => y(d.value));
+
+        
         svg
           .select<SVGPathElement>(".line")
-          // .attr("d", line.x((d: DataPoint) => newX(d.date)));
+          .attr("d", lineZoomed(data)); 
+
+        
         svg
           .selectAll<SVGCircleElement, DataPoint>(".dot")
-          .attr("cx", (d: DataPoint) => newX(d.date));
+          .attr("cx", (d) => newX(d.date));
       });
+
 
     svg.call(zoom);
 
-    // Points pour les données
+    
     svg
       .selectAll<SVGCircleElement, DataPoint>(".dot")
       .data(data)
