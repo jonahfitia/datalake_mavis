@@ -1,0 +1,12 @@
+{
+  "patient_id": "string",
+  "nom": "string",
+  "prenom": "string",
+  "sexe": "string",
+  "date_naissance": "date",
+  "adresse": "string",
+  "telephone": "string",
+  "email": "string",
+  "date_consultation": "timestamp",
+  "diagnostic": "string"
+}

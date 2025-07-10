@@ -1,0 +1,20 @@
+[
+  {
+    "name": "MAVIS_TEST",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "ssh_tunnel": {
+      "host": "102.16.7.154",
+      "port": 8090,
+      "user": "mmtadmin",
+      "password": "rkt20mc!"
+    },
+    "db_name": "mavi_notheme",
+    "user": "mirth_user",
+    "password": "rkt20mc!",
+    "table": "nom_de_la_table",   
+    "id_col": "id",
+    "mapping": {}
+  }
+]
