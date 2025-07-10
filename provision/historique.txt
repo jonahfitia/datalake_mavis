@@ -5,4 +5,15 @@ HIVE 3.1.3
 SPARK 3.4.2
 Mongo 6.0.24
 hbase 2.5.6
+-------------------------------------------------------------------
+BASE MAVIS_TEST
+SSH Tunnel :
+IP: 102.16.7.154
+Port: 8090
+Utilisateur: mmtadmin
 
+DB_connexion:
+Port: 5432
+Utilisateur: mirth_user
+
+Mot de passe ny rehetra: rkt20mc!
