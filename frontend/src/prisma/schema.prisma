@@ -8,13 +8,18 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(cuid())
+  id             String    @id @default(cuid())
   name           String?
-  email          String?  @unique
+  email          String?   @unique
+  password       String?   // Pour les connexions avec credentials (si utilisé)
+  role           Role      @default(DOCTOR) // Ajout du rôle
   emailVerified  DateTime?
   image          String?
+
   accounts       Account[]
   sessions       Session[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
 
 model Account {
@@ -24,6 +29,13 @@ model Account {
   provider           String
   providerAccountId  String
   access_token       String?
+  refresh_token      String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
   user               User     @relation(fields: [userId], references: [id])
 }
 
@@ -32,5 +44,11 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
+
   user         User     @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  ADMIN
+  DOCTOR
 }
