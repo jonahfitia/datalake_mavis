@@ -17,3 +17,8 @@ Port: 5432
 Utilisateur: mirth_user
 
 Mot de passe ny rehetra: rkt20mc!
+
+----------------------------------------------------------
+------discovery.py----------------------
+install sshtunnel
+
