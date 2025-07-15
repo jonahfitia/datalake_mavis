@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import ChartBar from "@/components/charts/TimeSeriesChart";
-import ChartLine from "@/components/charts/ChartLine";
-import ChartPie from "@/components/charts/ChartPie";
+import ChartHeatmap from "@/components/charts/ChartHeatmap";
+import ChartStackedBar from "@/components/charts/ChartStackedBar";
 import ChartRadar from "@/components/charts/ChartRadar";
 import LiveLineChart from "@/components/charts/LiveLineChart";
-import TimeSeriesChart from "@/components/charts/TimeSeriesChart";
 
 // ✅ Déclare ici l’interface des props attendues
 interface DashboardClientProps {
@@ -49,19 +47,16 @@ export default function DashboardClient({ userName }: DashboardClientProps) {
                 {/* Zone de graphiques - 9/12 */}
                 <div className="col-span-12 md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white p-4 rounded-xl shadow text-center">
-                        <ChartLine />
+                        <ChartHeatmap />
                     </div>
                     <div className="bg-white p-4 rounded-xl shadow text-center">
-                        <ChartPie />
+                        <ChartStackedBar />
                     </div>
                     <div className="bg-white p-4 rounded-xl shadow text-center">
                         <ChartRadar />
                     </div>
                     <div className="bg-white p-4 rounded-xl shadow text-center">
                         <LiveLineChart />
-                    </div>
-                    <div className="bg-white p-4 rounded-xl shadow text-center">
-                        <TimeSeriesChart />
                     </div>
                 </div>
 

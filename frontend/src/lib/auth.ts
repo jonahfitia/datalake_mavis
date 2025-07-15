@@ -10,6 +10,7 @@ import { compare } from "bcryptjs";
 declare module "next-auth" {
   interface Session {
     user: {
+      name: string;
       id: string;
       role: string;
       email: string;
@@ -31,6 +32,12 @@ declare module "next-auth/jwt" {
   }
 }
 
+type NextAuthUser = {
+  id: string;
+  email: string;
+  role: string;
+};
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -40,7 +47,8 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+
+      async authorize(credentials): Promise<NextAuthUser | null> {
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
@@ -49,19 +57,20 @@ export const authOptions: NextAuthOptions = {
           where: { email: credentials.email },
         });
 
-        if (!user) return null;
+        if (!user || !user.password) return null;
 
-        // Optionnel : à remplacer si password est hashé avec bcrypt
-        const isValid = user.password === credentials.password;
-
+        const isValid = await compare(credentials.password, user.password);
         if (!isValid) return null;
 
-        return {
+        // ✅ on retourne un objet conforme à ce que NextAuth attend
+        const safeUser: NextAuthUser = {
           id: user.id,
-          email: user.email,
+          email: user.email!,
           role: user.role,
         };
-      },
+
+        return safeUser;
+      }
     }),
   ],
   callbacks: {
@@ -70,6 +79,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.role = user.role;
         token.email = user.email;
+        token.name = user.name;
       }
       return token;
     },
@@ -86,7 +96,7 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/auth/login", // optionnel : ta propre page de connexion
+    signIn: "/auth/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

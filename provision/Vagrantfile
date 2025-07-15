@@ -2,6 +2,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
   config.vm.hostname = "datalake-vm"
   config.vm.network "private_network", type: "dhcp"
+  if Vagrant::Util::Platform.windows?
+  config.vm.synced_folder "E:/datalake-mavis", "/home/vagrant/datalake-mavis"
+else
+  config.vm.synced_folder "../datalake-mavis", "/home/vagrant/datalake-mavis"
+end
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "8192"
     vb.cpus = 4

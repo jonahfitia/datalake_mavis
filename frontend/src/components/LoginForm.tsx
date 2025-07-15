@@ -2,43 +2,72 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function LoginForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginPage() {
+  const router = useRouter();
 
-  const handleLogin = async () => {
+  const [email, setEmail] = useState("jonahrafit@gmail.com");
+  const [password, setPassword] = useState("jonah");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMessage("");
+
     const res = await signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/dashboard",
-      username,
+      redirect: false,
+      email,
       password,
     });
-  };
+
+    setLoading(false);
+
+    if (res?.error) {
+      setErrorMessage("Échec de connexion : email ou mot de passe invalide.");
+      console.error("Erreur NextAuth:", res.error);
+    } else {
+      router.push("/dashboard");
+    }
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="w-full max-w-xs space-y-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 bg-white p-6 rounded shadow">
+        <h2 className="text-xl font-semibold text-center">Connexion</h2>
+
         <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Adresse email"
+          required
           className="w-full p-2 border rounded"
-          placeholder="Nom d'utilisateur"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
         />
+
         <input
           type="password"
-          className="w-full p-2 border rounded"
-          placeholder="Mot de passe"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Mot de passe"
+          required
+          className="w-full p-2 border rounded"
         />
+
+        {errorMessage && (
+          <p className="text-red-600 text-sm text-center">{errorMessage}</p>
+        )}
+
         <button
-          className="w-full bg-blue-600 text-white p-2 rounded"
-          onClick={handleLogin}
+          type="submit"
+          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
+          disabled={loading}
         >
-          Se connecter
+          {loading ? "Connexion..." : "Se connecter"}
         </button>
-      </div>
+      </form>
     </div>
   );
 }

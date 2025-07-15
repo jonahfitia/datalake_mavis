@@ -11,8 +11,8 @@ model User {
   id             String    @id @default(cuid())
   name           String?
   email          String?   @unique
-  password       String?   // Pour les connexions avec credentials (si utilisé)
-  role           Role      @default(DOCTOR) // Ajout du rôle
+  password       String?   
+  role           Role      @default(DOCTOR) 
   emailVerified  DateTime?
   image          String?
 
