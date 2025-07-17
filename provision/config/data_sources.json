@@ -17,20 +17,12 @@
     }
   },
   {
-    "name": "MAVIS_TEST_2",
-    "type": "postgres",
-    "ssh": {
-      "host": "102.16.7.154",
-      "port": 8090,
-      "user": "mmtadmin",
-      "password": "rkt20mc!"
-    },
-    "db": {
-      "host": "localhost",
-      "port": 5432,
-      "user": "mirth_user",
-      "password": "rkt20mc!",
-      "database": "mavis_notheme"
+    "name": "CMS_EXCEL",
+    "type": "excel",
+    "path": "/home/jonah/datalake-mavis/docs/2021 CMS Web Interface Excel Template with Sample Data.xlsx",
+    "options": {
+      "header": true,
+      "inferSchema": true
     }
   }
 ]
