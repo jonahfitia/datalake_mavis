@@ -27,9 +27,9 @@ STAR TOPOLOGY
 
 ## 🧱 Technologies utilisées
 
-| Catégorie          | Technologies / Outils                                  |
-|------------------  |---------------------------------------------           |
-| 🖥️ Frontend        | Next.js, D3.js, i18n, Axios, Tailwind                  |
+| Catégorie          | Technologies / Outils                                    |
+|------------------  |---------------------------------------------             |
+| 🖥️ Frontend         Next.js, D3.js, i18n, Axios, Tailwind                    |
 | 🔄 Backend         | Node.js, Express.js (pour les APIs Hive/Mongo/HBase)   |
 | 🔐 Authentification| NextAuth.js + JWT                                      |
 | 🖥️ VM / Provision  | Vagrant, VirtualBox                                    |
@@ -38,7 +38,6 @@ STAR TOPOLOGY
 ---
 
 ## 📆 Suivi et planification
-
 📄 **Lien vers le timesheet de planification**:  
 👉 [Google Sheets - Timesheet du projet](https://docs.google.com/spreadsheets/d/1JWz_dfxnkArTi9TRiZZPBILCvF8YHNExeXLZ4VoAGos/edit?gid=484971601#gid=484971601)
 

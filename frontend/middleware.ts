@@ -1,62 +1,64 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { getToken } from "next-auth/jwt";
 
 const allowedOrigins = [
-    'http://localhost:3000',
-    'http://192.168.2.139:3000',
+  'http://localhost:3000',
+  'http://192.168.2.139:3000',
 ];
 
-// Pages protégées (tu peux adapter la liste)
 const protectedPaths = [
-    "/dashboard",
-    "/profile",
-    // ... ajoute ici d’autres chemins privés
+  "/dashboard",
+  "/profile",
 ];
 
-// Pages publiques où on ne veut pas être redirigé si connecté (ex: login, signup)
 const publicPaths = [
-    "/auth/login",
-    "/auth/signup",
+  "/auth/login",
+  "/auth/signup",
 ];
 
-export async function middleware(request: NextRequest) {
-    const origin = request.headers.get('origin') || '';
-    const url = request.nextUrl.clone();
+// Utilitaire : vérifier si session existe via cookie
+function isAuthenticated(request: NextRequest) {
+  const sessionCookie = request.cookies.get('next-auth.session-token')?.value ||
+                        request.cookies.get('__Secure-next-auth.session-token')?.value;
+  return !!sessionCookie;
+}
 
-    // CORS headers
-    const response = NextResponse.next();
-    if (allowedOrigins.includes(origin)) {
-        response.headers.set('Access-Control-Allow-Origin', origin);
-        response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    }
+export function middleware(request: NextRequest) {
+  const origin = request.headers.get('origin') || '';
+  const url = request.nextUrl.clone();
 
-    // Vérifier le token NextAuth
-    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  const response = NextResponse.next();
 
-    const pathname = url.pathname;
+  // CORS Headers
+  if (allowedOrigins.includes(origin)) {
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  }
 
-    // Si la route est protégée et pas de token => rediriger vers login
-    if (protectedPaths.some(path => pathname.startsWith(path)) && !token) {
-        url.pathname = "/auth/login";
-        return NextResponse.redirect(url);
-    }
+  const pathname = url.pathname;
+  const authenticated = isAuthenticated(request);
 
-    // Si la route est publique (login/signup) et utilisateur connecté => rediriger vers dashboard
-    if (publicPaths.some(path => pathname.startsWith(path)) && token) {
-        url.pathname = "/dashboard";
-        return NextResponse.redirect(url);
-    }
+  // 🔒 Rediriger vers /auth/login si la route est protégée et pas connecté
+  if (protectedPaths.some(path => pathname.startsWith(path)) && !authenticated) {
+    url.pathname = '/auth/login';
+    return NextResponse.redirect(url);
+  }
 
-    return response;
+  // 🚫 Si connecté et route publique (login/signup), rediriger vers /dashboard
+  if (publicPaths.some(path => pathname.startsWith(path)) && authenticated) {
+    url.pathname = '/dashboard';
+    return NextResponse.redirect(url);
+  }
+
+  return response;
 }
 
 export const config = {
-    matcher: [
-        "/dashboard/:path*",
-        "/profile/:path*",
-        "/auth/:path*",
-        "/",
-    ],
+  matcher: [
+    '/dashboard/:path*',
+    '/profile/:path*',
+    '/auth/:path*',
+    '/',
+  ],
 };
