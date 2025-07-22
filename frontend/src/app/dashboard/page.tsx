@@ -8,9 +8,9 @@ export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
+    // Rediriger vers la page login si pas connecté
     redirect("/auth/login");
   }
 
-  return <DashboardClient userName={session.user.email} />;
+  return <DashboardClient userName={session.user.email ?? "Utilisateur"} />;
 }
-
