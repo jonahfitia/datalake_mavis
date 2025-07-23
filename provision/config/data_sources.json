@@ -14,15 +14,14 @@
       "user": "mirth_user",
       "password": "rkt20mc!",
       "database": "mavis_notheme"
-    }
-  },
-  {
-    "name": "CMS_EXCEL",
-    "type": "excel",
-    "path": "/home/jonah/datalake-mavis/docs/2021 CMS Web Interface Excel Template with Sample Data.xlsx",
-    "options": {
-      "header": true,
-      "inferSchema": true
-    }
+    },
+    "tables_to_include": [
+      "hms_patient",
+      "acs_hospitalization",
+      "acs_laboratory_request",
+      "hms_appointment",
+      "prescription_order",
+      "acs_imaging_request"
+    ]
   }
 ]

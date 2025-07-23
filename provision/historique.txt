@@ -18,6 +18,10 @@ Mot de passe ny rehetra: rkt20mc!
 ----------------------------------------------------------
 ------discovery.py----------------------
 install sshtunnel
+
+vagrant ssh
+export SSH_PASSWORD_MAVIS_TEST=rkt20mc!
+export POSTGRES_PASSWORD_MAVIS_TEST=rkt20mc!
 _______________________________________________________________________________________________
 nombre u'Utilisateur
 niveau de securité
@@ -37,3 +41,11 @@ fichier excel : Serveur FTP
 
 _______________________________________________________________________________________________
 il faut specifier les tables importants
+
+MAVIS NOTHEME:
+hms_patient : Données démographiques des patients.
+acs_hospitalization : Hospitalisations.
+acs_laboratory_request, acs_lab_test : Tests de laboratoire.
+hms_appointment : Rendez-vous médicaux.
+hms_treatment, prescription_order : Traitements et prescriptions.
+acs_imaging_request, patient_imaging_test : Imagerie médicale.
