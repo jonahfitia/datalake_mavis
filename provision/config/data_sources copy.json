@@ -1,6 +1,6 @@
 [
   {
-    "name": "MAVIS_TEST",
+    "name": "MAVIS",
     "type": "postgres",
     "ssh": {
       "host": "102.16.7.154",
