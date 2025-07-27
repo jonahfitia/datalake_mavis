@@ -5,9 +5,25 @@ from pyspark.sql import SparkSession
 from openpyxl import load_workbook
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
+import datetime
+import decimal
+
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code"""
+    if isinstance(obj, datetime.datetime) or isinstance(obj, datetime.date):
+        return obj.isoformat()
+    if isinstance(obj, decimal.Decimal):
+        return float(obj)
+    return str(obj)
 
 logging.basicConfig(filename="/home/vagrant/datalake-mavis/provision/logs/datalake.log", level=logging.INFO)
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()  # Convertir datetime en chaîne ISO
+        return super().default(obj)
+    
 def discover_postgres(source, spark, source_index):
     logging.info(f"Découverte pour {source['name']}")
     ssh_cfg = source.get("ssh")
@@ -15,41 +31,78 @@ def discover_postgres(source, spark, source_index):
     tables_info = []
 
     try:
+        ssh_password = os.getenv(f"SSH_PASSWORD_{source['name']}", ssh_cfg.get("password", "0000!"))
+        db_password = os.getenv(f"POSTGRES_PASSWORD_{source['name']}", db_cfg.get("password", "00000!"))
+        logging.info(f"SSH Password defined: {bool(ssh_password)}")
+        logging.info(f"DB Password defined: {bool(db_password)}")
+
         with SSHTunnelForwarder(
             (ssh_cfg["host"], ssh_cfg["port"]),
             ssh_username=ssh_cfg["user"],
-            ssh_password=os.getenv(f"SSH_PASSWORD_{source['name']}"),
+            ssh_password=ssh_password,
             remote_bind_address=(db_cfg["host"], db_cfg["port"]),
-            local_bind_address=('0.0.0.0', 5432 + source_index)
+            local_bind_address=('127.0.0.1', 15432 + source_index)
         ) as tunnel:
-            url = f"jdbc:postgresql://localhost:{tunnel.local_bind_port}/{db_cfg['database']}"
+            logging.info(f"Tunnel établi sur port local {tunnel.local_bind_port}")
+            url = f"jdbc:postgresql://127.0.0.1:{tunnel.local_bind_port}/{db_cfg['database']}"
             properties = {
                 "user": db_cfg["user"],
-                "password": os.getenv(f"POSTGRES_PASSWORD_{source['name']}"),
+                "password": db_password,
                 "driver": "org.postgresql.Driver",
-                "ssl": "true",
-                "sslmode": "require"
+                "ssl": "false"
             }
 
             # Récupérer les tables
+            logging.info("Exécution de la requête pour récupérer les tables...")
+            tables_to_include = source.get("tables_to_include", [])
+
+            if tables_to_include:
+                # Format SQL : 'table1','table2',...
+                tables_str = ",".join(f"'{t}'" for t in tables_to_include)
+                query = f"""
+                    (SELECT table_name, table_type 
+                    FROM information_schema.tables 
+                    WHERE table_schema = 'public' 
+                    AND table_type IN ('BASE TABLE', 'VIEW')
+                    AND table_name IN ({tables_str})
+                    ) t
+                """
+            else:
+                query = """
+                    (SELECT table_name, table_type 
+                    FROM information_schema.tables 
+                    WHERE table_schema = 'public' 
+                    AND table_type IN ('BASE TABLE', 'VIEW')
+                    ) t
+                """
             df_tables = spark.read.jdbc(
                 url=url,
-                table="(SELECT table_name, table_type FROM information_schema.tables WHERE table_schema = 'public' AND table_type IN ('BASE TABLE', 'VIEW')) t",
+                table=query,
                 properties=properties
             )
             tables = [{"table_name": row["table_name"], "table_type": row["table_type"]} for row in df_tables.collect()]
+            logging.info(f"Nombre de tables trouvées : {len(tables)}")
+            logging.info(f"Tables : {tables}")
 
-            for table in tables[:1000]:  # Limiter à 1000 tables par base
+            for table in tables:
                 table_name = table["table_name"]
+                logging.info(f"Traitement de la table : {table_name}")
                 try:
                     df_cols = spark.read.jdbc(
                         url=url,
                         table=f"(SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '{table_name}' ORDER BY ordinal_position) t",
                         properties=properties
                     )
+                    df_type = spark.read.jdbc(
+                        url=url,
+                        table=f"(SELECT table_type FROM information_schema.tables WHERE table_name = '{table_name}') t",
+                        properties=properties
+                    )
+                    table_type = df_type.collect()[0]["table_type"] if df_type.count() > 0 else "UNKNOWN"
                     columns = [{"name": row["column_name"], "type": str(row["data_type"])} for row in df_cols.collect()]
+                    logging.info(f"Colonnes pour {table_name} : {columns}")
                     df_data = spark.read.jdbc(url=url, table=table_name, properties=properties)
-                    sample_data = df_data.limit(10).collect()  # Échantillon de 10 lignes
+                    sample_data = df_data.limit(10).collect()
                     df_data.write.mode("overwrite").parquet(f"hdfs://localhost:9000/datalake/raw/{source['name']}/{table_name}")
                     tables_info.append({
                         "table_name": table_name,
@@ -66,6 +119,7 @@ def discover_postgres(source, spark, source_index):
         logging.error(f"Error connecting to {source['name']}: {str(e)}")
         return tables_info
 
+    logging.info(f"Tables info collectées : {tables_info}")
     return tables_info
 
 def discover_excel(source, spark):
@@ -96,7 +150,10 @@ def main():
         .config("spark.executor.memory", "8g") \
         .config("spark.executor.cores", "4") \
         .config("spark.driver.memory", "4g") \
+        .config("spark.sql.debug.maxToStringFields", "1000") \
         .getOrCreate()
+        
+    spark.sparkContext.setLogLevel("ERROR")
 
     # Charger data_sources.json depuis le dossier synchronisé
     with open("/home/vagrant/datalake-mavis/provision/config/data_sources.json") as f:
@@ -136,7 +193,7 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, "discovery_report.json")
     with open(output_file, "w") as f:
-        json.dump(discovery_report, f, indent=2)
+        json.dump(discovery_report, f, indent=2, default=json_serial)
 
     print(f"\n✅ Rapport de découverte généré : {output_file}")
     spark.stop()
