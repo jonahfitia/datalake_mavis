@@ -3,10 +3,10 @@ start-yarn.sh
 start-master.sh
 
 ssh -L 5432:localhost:5432 -p 8090 mmtadmin@102.16.7.154
-paraphrase sur ssh_private_key = mmt_admin
 
 ## INFO
-n'oublie pas export SPARK_DATABASE_{NOM_DB}_PASSWORD
+- n'oublie pas export SPARK_DATABASE_{NOM_DB}_PASSWORD
+- paraphrase sur ssh_private_key = mavis
 
 ## probleme : 
 - 1000 base * 1000 tables
