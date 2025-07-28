@@ -1,0 +1,69 @@
+{
+  "MAVIS": {
+    "hms_patient": {
+      "fhir_resource": "Patient",
+      "mappings": [
+        {"source_column": "id", "fhir_field": "id"},
+        {"source_column": "partner_id", "fhir_field": "identifier.value", "transform": "http://example.com/patient-partner-id/{partner_id}"},
+        {"source_column": "marital_status", "fhir_field": "maritalStatus.coding.code"},
+        {"source_column": "birth_weight", "fhir_field": "extension.valueQuantity.value", "transform": "http://hl7.org/fhir/StructureDefinition/patient-birthWeight|{birth_weight}|kg"},
+        {"source_column": "currently_pregnant", "fhir_field": "extension.valueBoolean", "transform": "http://hl7.org/fhir/StructureDefinition/patient-currentlyPregnant|{currently_pregnant}"}
+      ]
+    },
+    "acs_imaging_request": {
+      "fhir_resource": "DiagnosticReport",
+      "mappings": [
+        {"source_column": "id", "fhir_field": "id"},
+        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
+        {"source_column": "test_type", "fhir_field": "code.coding.display"},
+        {"source_column": "date", "fhir_field": "issued"},
+        {"source_column": "physician_id", "fhir_field": "performer.reference", "transform": "Practitioner/{physician_id}"},
+        {"source_column": "total_price", "fhir_field": "extension.valueMoney.value", "transform": "http://example.com/total-price|{total_price}|KES"}
+      ]
+    },
+    "acs_laboratory_request": {
+      "fhir_resource": "DiagnosticReport",
+      "mappings": [
+        {"source_column": "id", "fhir_field": "id"},
+        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
+        {"source_column": "test_type", "fhir_field": "code.coding.display"},
+        {"source_column": "date", "fhir_field": "issued"},
+        {"source_column": "physician_id", "fhir_field": "performer.reference", "transform": "Practitioner/{physician_id}"},
+        {"source_column": "total_price", "fhir_field": "extension.valueMoney.value", "transform": "http://example.com/total-price|{total_price}|KES"}
+      ]
+    },
+    "hms_appointment": {
+      "fhir_resource": "Encounter",
+      "mappings": [
+        {"source_column": "id", "fhir_field": "id"},
+        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
+        {"source_column": "date_start", "fhir_field": "period.start"},
+        {"source_column": "date_end", "fhir_field": "period.end"},
+        {"source_column": "chief_complain", "fhir_field": "reasonCode.text"},
+        {"source_column": "physician_id", "fhir_field": "participant.individual.reference", "transform": "Practitioner/{physician_id}"},
+        {"source_column": "differencial_diagnosis", "fhir_field": "diagnosis.condition.coding.code", "transform": "http://hl7.org/fhir/sid/icd-10|{differencial_diagnosis}"}
+      ]
+    },
+    "acs_hospitalization": {
+      "fhir_resource": "Encounter",
+      "mappings": [
+        {"source_column": "id", "fhir_field": "id"},
+        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
+        {"source_column": "hospitalization_date", "fhir_field": "period.start"},
+        {"source_column": "discharge_date", "fhir_field": "period.end"},
+        {"source_column": "discharge_diagnosis", "fhir_field": "diagnosis.condition.coding.code", "transform": "http://hl7.org/fhir/sid/icd-10|{discharge_diagnosis}"},
+        {"source_column": "physician_id", "fhir_field": "participant.individual.reference", "transform": "Practitioner/{physician_id}"}
+      ]
+    },
+    "prescription_order": {
+      "fhir_resource": "MedicationRequest",
+      "mappings": [
+        {"source_column": "id", "fhir_field": "id"},
+        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
+        {"source_column": "prescription_date", "fhir_field": "authoredOn"},
+        {"source_column": "notes", "fhir_field": "note.text"},
+        {"source_column": "physician_id", "fhir_field": "requester.reference", "transform": "Practitioner/{physician_id}"}
+      ]
+    }
+  }
+}

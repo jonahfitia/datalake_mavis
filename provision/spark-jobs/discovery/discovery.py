@@ -17,12 +17,6 @@ def json_serial(obj):
     return str(obj)
 
 logging.basicConfig(filename="/home/vagrant/datalake-mavis/provision/logs/datalake.log", level=logging.INFO)
-
-class DateTimeEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, datetime):
-            return obj.isoformat()  # Convertir datetime en chaîne ISO
-        return super().default(obj)
     
 def discover_postgres(source, spark, source_index):
     logging.info(f"Découverte pour {source['name']}")
@@ -137,15 +131,17 @@ def main():
         .appName("PivotSchemaDiscovery") \
         .master("local[*]") \
         .config("spark.jars", ",".join([
+        #     "/home/vagrant/spark/jars/postgresql-42.7.3.jar",
+        #     "/home/vagrant/spark/jars/spark-excel_2.12-0.13.5.jar"
             "/home/vagrant/spark/jars/postgresql-42.7.3.jar",
             "/home/vagrant/spark/jars/spark-excel_2.12-3.5.0_0.20.3.jar",
             "/home/vagrant/spark/jars/poi-5.2.3.jar",
             "/home/vagrant/spark/jars/poi-ooxml-5.2.3.jar",
-            "/home/vagrant/spark/jars/poi-ooxml-lite-5.2.3.jar",
-            "/home/vagrant/spark/jars/xmlbeans-5.1.1.jar",
-            "/home/vagrant/spark/jars/commons-compress-1.26.2.jar",
             "/home/vagrant/spark/jars/commons-collections4-4.4.jar",
-            "/home/vagrant/spark/jars/ooxml-schemas-1.4.jar"
+            "/home/vagrant/spark/jars/xmlbeans-5.1.1.jar",
+            "/home/vagrant/spark/jars/ooxml-schemas-1.4.jar",
+            "/home/vagrant/spark/jars/commons-compress-1.21.jar",
+            "/home/vagrant/spark/jars/stax-api-1.0.1.jar"
         ])) \
         .config("spark.executor.memory", "8g") \
         .config("spark.executor.cores", "4") \
