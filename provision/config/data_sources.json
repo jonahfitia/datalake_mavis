@@ -15,13 +15,6 @@
       "password": "rkt20mc!",
       "database": "mavis_notheme"
     },
-    "tables_to_include": [
-      "hms_patient",
-      "acs_hospitalization",
-      "acs_laboratory_request",
-      "hms_appointment",
-      "prescription_order",
-      "acs_imaging_request"
-    ]
+    "tables_to_include": []
   }
 ]
