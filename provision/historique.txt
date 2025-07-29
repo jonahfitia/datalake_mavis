@@ -49,3 +49,16 @@ acs_laboratory_request, acs_lab_test : Tests de laboratoire.
 hms_appointment : Rendez-vous médicaux.
 hms_treatment, prescription_order : Traitements et prescriptions.
 acs_imaging_request, patient_imaging_test : Imagerie médicale.
+
+_______________________________________________________________________________________________
+Problèmes et solutions : 
+Mentionne les champs vides dans le schéma pivot et ta solution envisagée 
+(ex. : ajuster le mapping, utiliser NLP).
+
+_______________________________________________________________________________________________
+**Tableau comparatif des solutions de datalake** :
+| Solution          | Interopérabilité FHIR | Scalabilité | Support NLP | Coût |
+|-------------------|-----------------------|-------------|-------------|------|
+| Databricks        | Élevée (Delta Lake)   | Élevée      | Oui (MLflow)| Moyen|
+| Azure Data Lake   | Élevée (Health Data Services) | Élevée | Oui (Text Analytics) | Moyen |
+| AWS Lake Formation| Moyenne               | Élevée      | Oui (Comprehend Medical) | Élevé |
