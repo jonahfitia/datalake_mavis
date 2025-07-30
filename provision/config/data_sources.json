@@ -16,5 +16,17 @@
       "database": "mavis_notheme"
     },
     "tables_to_include": []
+  },
+  {
+    "name": "MMT_DB",
+    "type": "postgres",
+    "db": {
+      "host": "192.168.56.1",
+      "port": 5432,
+      "user": "postgres",
+      "password": "jonah",
+      "database": "mmt_db"
+    },
+    "tables_to_include": []
   }
 ]
