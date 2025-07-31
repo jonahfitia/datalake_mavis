@@ -62,3 +62,14 @@ ________________________________________________________________________________
 | Databricks        | Élevée (Delta Lake)   | Élevée      | Oui (MLflow)| Moyen|
 | Azure Data Lake   | Élevée (Health Data Services) | Élevée | Oui (Text Analytics) | Moyen |
 | AWS Lake Formation| Moyenne               | Élevée      | Oui (Comprehend Medical) | Élevé |
+
+_______________________________________________________________________________________________
+discovery.py : 
+Filtres pour cibler les tables pertinentes (ex. : patient, diagnosis, hospitalization).
+Traitement par lots pour éviter la surcharge mémoire/CPU.
+Cache pour réutiliser les métadonnées existantes.
+Parallélisation optimisée avec ThreadPoolExecutor.
+Logs détaillés pour faciliter le débogage.
+_________________________________________________________________________________________________
+ssh -fN -L 15432:localhost:5432 -p 8090 mmtadmin@102.16.7.154
+execution en arrièe plan
