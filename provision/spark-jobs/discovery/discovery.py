@@ -2,18 +2,11 @@ from sshtunnel import SSHTunnelForwarder
 import os
 import json
 from pyspark.sql import SparkSession
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from sentence_transformers import SentenceTransformer, util
 import logging
 import datetime
 import decimal
-
-def json_serial(obj):
-    """JSON serializer for objects not serializable by default json code"""
-    if isinstance(obj, (datetime.datetime, datetime.date)):
-        return obj.isoformat()
-    if isinstance(obj, decimal.Decimal):
-        return float(obj)
-    return str(obj)
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Configuration des logs
 logging.basicConfig(
@@ -22,10 +15,56 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
+# Initialiser le modèle TALN (SentenceTransformers)
+try:
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    logging.info("Modèle SentenceTransformers chargé avec succès")
+except Exception as e:
+    logging.error(f"Erreur lors du chargement du modèle TALN: {str(e)}")
+    model = None
+
+# Termes clés pour FHIR/RMA
+FHIR_KEYWORDS = [
+    "patient", "person", "individual", "diagnosis", "condition", "hospitalization",
+    "encounter", "consultation", "admission", "discharge", "treatment", "procedure"
+]
+
+def json_serial(obj):
+    """JSON serializer pour objets non sérialisables."""
+    if isinstance(obj, (datetime.datetime, datetime.date)):
+        return obj.isoformat()
+    if isinstance(obj, decimal.Decimal):
+        return float(obj)
+    return str(obj)
+
+def select_relevant_tables(tables, columns_data, threshold=0.6):
+    """Utilise le TALN pour sélectionner les tables pertinentes."""
+    if not model:
+        logging.warning("Modèle TALN non disponible, retour aux filtres statiques")
+        return [t["table_name"] for t in tables]
+    
+    relevant_tables = []
+    keyword_embeddings = model.encode(FHIR_KEYWORDS, convert_to_tensor=True)
+    
+    for table in tables:
+        table_name = table["table_name"]
+        table_columns = [col["column_name"] for col in columns_data if col["table_name"] == table_name]
+        text_to_analyze = [table_name] + table_columns
+        text_embeddings = model.encode(text_to_analyze, convert_to_tensor=True)
+        similarities = util.cos_sim(text_embeddings, keyword_embeddings)
+        max_similarity = similarities.max().item()
+        
+        logging.info(f"Table {table_name}: Similarité max = {max_similarity:.2f}")
+        if max_similarity >= threshold:
+            relevant_tables.append(table_name)
+    
+    logging.info(f"Tables pertinentes sélectionnées: {relevant_tables}")
+    return relevant_tables
+
 def discover_postgres(source, spark, source_index):
     """Explore une base PostgreSQL et génère les métadonnées des tables pertinentes."""
     logging.info(f"Début de la découverte pour {source['name']}")
-    ssh_cfg = source.get("ssh", {})
+    ssh_cfg = source.get("ssh", {})  # Configuration SSH par défaut vide
     db_cfg = source["db"]
     tables_info = []
     cache_path = f"/home/vagrant/datalake-mavis/provision/spark-jobs/metadata/{source['name']}_discovery_report.json"
@@ -37,28 +76,52 @@ def discover_postgres(source, spark, source_index):
             return json.load(f)
 
     try:
-        # Récupérer les identifiants depuis les variables d’environnement ou la config
-        ssh_password = os.getenv(f"SSH_PASSWORD_{source['name']}", ssh_cfg.get("password", "0000!"))
-        db_password = os.getenv(f"POSTGRES_PASSWORD_{source['name']}", db_cfg.get("password", "0000!"))
+        # Récupérer les identifiants
+        ssh_password = os.getenv(f"SSH_PASSWORD_{source['name']}", ssh_cfg.get("password") if ssh_cfg else None)
+        ssh_private_key = ssh_cfg.get("private_key")  # Chemin de la clé privée
+        db_password = os.getenv(f"POSTGRES_PASSWORD_{source['name']}", db_cfg.get("password"))
+        
         logging.info(f"SSH Password défini: {bool(ssh_password)}")
+        logging.info(f"SSH Private Key défini: {bool(ssh_private_key)}")
         logging.info(f"DB Password défini: {bool(db_password)}")
 
+        # Valider les identifiants
+        if not db_password:
+            raise ValueError(f"Mot de passe de la base de données manquant pour {source['name']}")
+        
         # Configurer le tunnel SSH si nécessaire
-        if ssh_cfg:
-            tunnel = SSHTunnelForwarder(
-                (ssh_cfg["host"], ssh_cfg["port"]),
-                ssh_username=ssh_cfg["user"],
-                ssh_password=ssh_password,
-                remote_bind_address=(db_cfg["host"], db_cfg["port"]),
-                local_bind_address=('127.0.0.1', 15432 + source_index)
-            )
-            tunnel.start()
-            logging.info(f"Tunnel SSH établi sur port local {tunnel.local_bind_port}")
-            url = f"jdbc:postgresql://127.0.0.1:{tunnel.local_bind_port}/{db_cfg['database']}"
+        tunnel = None
+        if ssh_cfg and ssh_cfg.get("host") and ssh_cfg.get("port") and ssh_cfg.get("user"):
+            try:
+                tunnel_args = {
+                    "ssh_address_or_host": (ssh_cfg["host"], ssh_cfg["port"]),
+                    "ssh_username": ssh_cfg["user"],
+                    "remote_bind_address": (db_cfg["host"], db_cfg["port"]),
+                    "local_bind_address": ('127.0.0.1', 15432 + source_index)
+                }
+                
+                # Prioriser la clé privée si disponible
+                if ssh_private_key and os.path.exists(ssh_private_key):
+                    tunnel_args["ssh_private_key"] = ssh_private_key
+                    logging.info(f"Utilisation de la clé privée SSH: {ssh_private_key}")
+                elif ssh_password:
+                    tunnel_args["ssh_password"] = ssh_password
+                    logging.info(f"Utilisation du mot de passe SSH pour {source['name']}")
+                else:
+                    raise ValueError(f"Aucune méthode d'authentification SSH valide pour {source['name']}: ni clé privée ni mot de passe")
+
+                tunnel = SSHTunnelForwarder(**tunnel_args)
+                tunnel.start()
+                logging.info(f"Tunnel SSH établi sur port local {tunnel.local_bind_port}")
+                url = f"jdbc:postgresql://127.0.0.1:{tunnel.local_bind_port}/{db_cfg['database']}"
+            except Exception as e:
+                logging.error(f"Erreur lors de l'établissement du tunnel SSH pour {source['name']}: {str(e)}")
+                tables_info.append({"source_name": source["name"], "error": f"Échec du tunnel SSH: {str(e)}"})
+                return tables_info  # Retourner l'erreur sans bloquer
         else:
             url = f"jdbc:postgresql://{db_cfg['host']}:{db_cfg['port']}/{db_cfg['database']}"
-            tunnel = None
-
+            logging.info(f"Connexion directe sans SSH pour {source['name']}")
+            
         # Propriétés de connexion JDBC
         properties = {
             "user": db_cfg["user"],
@@ -67,46 +130,43 @@ def discover_postgres(source, spark, source_index):
             "ssl": "false"
         }
 
-        # Récupérer les tables pertinentes
+        # Récupérer toutes les tables pour TALN
+        tables_query = """
+            (SELECT table_name, table_type 
+            FROM information_schema.tables 
+            WHERE table_schema = 'public' 
+            AND table_type IN ('BASE TABLE', 'VIEW')
+            ) t
+        """
+        logging.info("Exécution de la requête pour récupérer toutes les tables...")
+        df_tables = spark.read.jdbc(url=url, table=tables_query, properties=properties)
+        tables = [{"table_name": row["table_name"], "table_type": row["table_type"]} for row in df_tables.collect()]
+        logging.info(f"Nombre total de tables trouvées: {len(tables)}")
+
+        # Récupérer toutes les colonnes pour TALN
+        columns_query = """
+            (SELECT table_name, column_name 
+            FROM information_schema.columns 
+            WHERE table_schema = 'public'
+            ) t
+        """
+        df_columns = spark.read.jdbc(url=url, table=columns_query, properties=properties)
+        columns_data = [{"table_name": row["table_name"], "column_name": row["column_name"]} for row in df_columns.collect()]
+
+        # Sélectionner les tables pertinentes
         tables_to_include = source.get("tables_to_include", [])
         if tables_to_include:
-            tables_str = ",".join(f"'{t}'" for t in tables_to_include)
-            query = f"""
-                (SELECT table_name, table_type 
-                FROM information_schema.tables 
-                WHERE table_schema = 'public' 
-                AND table_type IN ('BASE TABLE', 'VIEW')
-                AND table_name IN ({tables_str})
-                ) t
-            """
+            relevant_tables = [t["table_name"] for t in tables if t["table_name"] in tables_to_include]
         else:
-            # Filtrer les tables pertinentes pour FHIR/RMA
-            query = """
-                (SELECT t.table_name, t.table_type 
-                FROM information_schema.tables t
-                JOIN information_schema.columns c ON t.table_name = c.table_name
-                WHERE t.table_schema = 'public' 
-                AND t.table_type IN ('BASE TABLE', 'VIEW')
-                AND (
-                    t.table_name ILIKE ANY (ARRAY['%patient%', '%diagn%', '%hospitalization%', '%encounter%', '%consultation%'])
-                    OR c.column_name ILIKE ANY (ARRAY['%patient_id%', '%diagnosis%', '%admission_date%', '%diagnosis_code%'])
-                )
-                GROUP BY t.table_name, t.table_type
-                ) t
-            """
-        logging.info("Exécution de la requête pour récupérer les tables...")
-        df_tables = spark.read.jdbc(url=url, table=query, properties=properties)
-        tables = [{"table_name": row["table_name"], "table_type": row["table_type"]} for row in df_tables.collect()]
-        logging.info(f"Nombre de tables trouvées: {len(tables)}")
-        logging.info(f"Tables: {[t['table_name'] for t in tables]}")
+            relevant_tables = select_relevant_tables(tables, columns_data, threshold=0.6)
+        logging.info(f"Tables pertinentes après TALN: {relevant_tables}")
 
-        # Traiter les tables par lots
+        # Traiter les tables pertinentes par lots
         batch_size = 100
-        for i in range(0, len(tables), batch_size):
-            batch_tables = tables[i:i + batch_size]
-            logging.info(f"Traitement du lot {i//batch_size + 1}/{len(tables)//batch_size + 1}")
-            for table in batch_tables:
-                table_name = table["table_name"]
+        for i in range(0, len(relevant_tables), batch_size):
+            batch_tables = relevant_tables[i:i + batch_size]
+            logging.info(f"Traitement du lot {i//batch_size + 1}/{len(relevant_tables)//batch_size + 1}")
+            for table_name in batch_tables:
                 logging.info(f"Traitement de la table: {table_name}")
                 try:
                     # Récupérer les colonnes
@@ -129,7 +189,7 @@ def discover_postgres(source, spark, source_index):
                     tables_info.append({
                         "source_name": source["name"],
                         "table_name": table_name,
-                        "table_type": table["table_type"],
+                        "table_type": next(t["table_type"] for t in tables if t["table_name"] == table_name),
                         "columns": columns,
                         "row_count": df_data.count(),
                         "sample_data": [row.asDict() for row in sample_data]

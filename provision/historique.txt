@@ -73,3 +73,7 @@ Logs détaillés pour faciliter le débogage.
 _________________________________________________________________________________________________
 ssh -fN -L 15432:localhost:5432 -p 8090 mmtadmin@102.16.7.154
 execution en arrièe plan
+
+_______________________________________________________________________________________________
+pip freeze > requirements.txt
+pour avoir toutes les listes des librairies installé pour les installer plus tard

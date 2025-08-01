@@ -30,6 +30,7 @@ ssh -L 5432:localhost:5432 -p 8090 mmtadmin@102.16.7.154
 - 
 
 ## OUTILS
+-  sentenceTransformers poue le TALN
 -  Databricks (script de ça pour le mapping de CIM-10)
 -  Azure Text Analytics for Health (pour la classifications des diagnostics)
 -  

@@ -34,13 +34,15 @@
     }
   },
   {
-    "name": "CMS_EXCEL",
-    "type": "excel",
-    "path": "/home/jonah/datalake-mavis/docs/2021 CMS Web Interface Excel Template with Sample Data.xlsx",
-    "options": {
-      "header": true,
-      "inferSchema": true
+    "name": "MMT_DB",
+    "type": "postgres",
+    "db": {
+      "host": "192.168.56.1",
+      "port": 5432,
+      "user": "postgres",
+      "password": "jonah",
+      "database": "mmt_db"
     },
-    "sheets_to_include": ["PatientList"]
+    "tables_to_include": []
   }
 ]

@@ -6,7 +6,8 @@
       "host": "102.16.7.154",
       "port": 8090,
       "user": "mmtadmin",
-      "password": "rkt20mc!"
+      "password": "rkt20mc!",
+      "private_key": "/home/vagrant/.ssh/id_rsa"
     },
     "db": {
       "host": "localhost",
