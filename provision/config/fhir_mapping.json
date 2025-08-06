@@ -1,69 +1,701 @@
 {
-  "MAVIS": {
-    "hms_patient": {
-      "fhir_resource": "Patient",
-      "mappings": [
-        {"source_column": "id", "fhir_field": "id"},
-        {"source_column": "partner_id", "fhir_field": "identifier.value", "transform": "http://example.com/patient-partner-id/{partner_id}"},
-        {"source_column": "marital_status", "fhir_field": "maritalStatus.coding.code"},
-        {"source_column": "birth_weight", "fhir_field": "extension.valueQuantity.value", "transform": "http://hl7.org/fhir/StructureDefinition/patient-birthWeight|{birth_weight}|kg"},
-        {"source_column": "currently_pregnant", "fhir_field": "extension.valueBoolean", "transform": "http://hl7.org/fhir/StructureDefinition/patient-currentlyPregnant|{currently_pregnant}"}
-      ]
+  "MMT_DB": {
+    "gnuhealth_inpatient_registration": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      }
     },
+    "gnuhealth_patient": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "pap_test_last": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "menopause": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "colposcopy_last": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "gravida": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "menarche": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "mammography_last": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "full_term": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "premature": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "abortions": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "stillbirths": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "hb": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "718-7"
+      }
+    },
+    "gnuhealth_patient_disease": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "disease_severity": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      }
+    },
+    "gnuhealth_patient_evaluation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Observation",
+        "fhir_field": "effectiveDateTime"
+      },
+      "write_date": {
+        "fhir_resource": "Observation",
+        "fhir_field": "effectiveDateTime"
+      },
+      "info_diagnosis": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "height": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "8302-2"
+      },
+      "bmi": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "39156-5"
+      },
+      "weight": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "29463-7"
+      },
+      "diagnosis": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      }
+    },
+    "gnuhealth_patient_lab_test": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    },
+    "gnuhealth_patient_medication": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      }
+    },
+    "gnuhealth_perinatal": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "gravida_number": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "admission_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    }
+  },
+  "MAVIS": {
     "acs_imaging_request": {
-      "fhir_resource": "DiagnosticReport",
-      "mappings": [
-        {"source_column": "id", "fhir_field": "id"},
-        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
-        {"source_column": "test_type", "fhir_field": "code.coding.display"},
-        {"source_column": "date", "fhir_field": "issued"},
-        {"source_column": "physician_id", "fhir_field": "performer.reference", "transform": "Practitioner/{physician_id}"},
-        {"source_column": "total_price", "fhir_field": "extension.valueMoney.value", "transform": "http://example.com/total-price|{total_price}|KES"}
-      ]
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "department_id": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      }
     },
     "acs_laboratory_request": {
-      "fhir_resource": "DiagnosticReport",
-      "mappings": [
-        {"source_column": "id", "fhir_field": "id"},
-        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
-        {"source_column": "test_type", "fhir_field": "code.coding.display"},
-        {"source_column": "date", "fhir_field": "issued"},
-        {"source_column": "physician_id", "fhir_field": "performer.reference", "transform": "Practitioner/{physician_id}"},
-        {"source_column": "total_price", "fhir_field": "extension.valueMoney.value", "transform": "http://example.com/total-price|{total_price}|KES"}
-      ]
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "department_id": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      }
+    },
+    "acs_vaccination": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
     },
     "hms_appointment": {
-      "fhir_resource": "Encounter",
-      "mappings": [
-        {"source_column": "id", "fhir_field": "id"},
-        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
-        {"source_column": "date_start", "fhir_field": "period.start"},
-        {"source_column": "date_end", "fhir_field": "period.end"},
-        {"source_column": "chief_complain", "fhir_field": "reasonCode.text"},
-        {"source_column": "physician_id", "fhir_field": "participant.individual.reference", "transform": "Practitioner/{physician_id}"},
-        {"source_column": "differencial_diagnosis", "fhir_field": "diagnosis.condition.coding.code", "transform": "http://hl7.org/fhir/sid/icd-10|{differencial_diagnosis}"}
-      ]
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "department_id": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      },
+      "differencial_diagnosis": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "department_type": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
     },
-    "acs_hospitalization": {
-      "fhir_resource": "Encounter",
-      "mappings": [
-        {"source_column": "id", "fhir_field": "id"},
-        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
-        {"source_column": "hospitalization_date", "fhir_field": "period.start"},
-        {"source_column": "discharge_date", "fhir_field": "period.end"},
-        {"source_column": "discharge_diagnosis", "fhir_field": "diagnosis.condition.coding.code", "transform": "http://hl7.org/fhir/sid/icd-10|{discharge_diagnosis}"},
-        {"source_column": "physician_id", "fhir_field": "participant.individual.reference", "transform": "Practitioner/{physician_id}"}
-      ]
+    "hms_patient_disease": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "disease": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "disease_severity": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
     },
-    "prescription_order": {
-      "fhir_resource": "MedicationRequest",
-      "mappings": [
-        {"source_column": "id", "fhir_field": "id"},
-        {"source_column": "patient_id", "fhir_field": "subject.reference", "transform": "Patient/{patient_id}"},
-        {"source_column": "prescription_date", "fhir_field": "authoredOn"},
-        {"source_column": "notes", "fhir_field": "note.text"},
-        {"source_column": "physician_id", "fhir_field": "requester.reference", "transform": "Practitioner/{physician_id}"}
-      ]
+    "hms_patient_medication": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    },
+    "hms_patient_pregnancy": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "gravida": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    },
+    "hms_surgery": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "diseases_id": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "diagnosis": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "department_id": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      }
+    },
+    "hms_treatment": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "department_id": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      },
+      "date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "diagnosis_id": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "disease_severity": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "disease_status": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "patient_disease_id": {
+        "fhir_resource": "Condition",
+        "fhir_field": "code"
+      },
+      "department_type": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    },
+    "hospital_ward": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "ward_room_type": {
+        "fhir_resource": "Location",
+        "fhir_field": "name"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    },
+    "acs_patient_evaluation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "name": {
+        "fhir_resource": "Patient",
+        "fhir_field": "name.given"
+      },
+      "date": {
+        "fhir_resource": "Observation",
+        "fhir_field": "effectiveDateTime"
+      },
+      "patient_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "weight": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "29463-7"
+      },
+      "height": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "8302-2"
+      },
+      "rbs": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "1558-6"
+      },
+      "bmi": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "39156-5"
+      },
+      "create_date": {
+        "fhir_resource": "Observation",
+        "fhir_field": "effectiveDateTime"
+      },
+      "write_date": {
+        "fhir_resource": "Observation",
+        "fhir_field": "effectiveDateTime"
+      }
+    },
+    "hms_perinatal": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "gravida_number": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "admission_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      }
+    },
+    "hms_patient": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "partner_id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "create_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "write_date": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "birth_weight": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "8339-4"
+      },
+      "birth_height": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "8302-2"
+      },
+      "birth_head_circum": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "8287-5"
+      },
+      "screatinine": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "2160-0"
+      },
+      "menarche": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "menopause": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "gravida": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "premature": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "abortions": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "stillbirths": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "vaginal_birth": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "cesarean_birth": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "mammography_last": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "pap_test_last": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "colposcopy_last": {
+        "fhir_resource": "Encounter",
+        "fhir_field": "period.start"
+      },
+      "full_term": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "11612-9"
+      },
+      "hb": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "718-7"
+      },
+      "rbs": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueQuantity",
+        "code": "1558-6"
+      },
+      "hiv": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueCodeableConcept",
+        "code": "55277-8"
+      },
+      "hbsag": {
+        "fhir_resource": "Observation",
+        "fhir_field": "valueCodeableConcept",
+        "code": "5196-1"
+      }
     }
   }
 }

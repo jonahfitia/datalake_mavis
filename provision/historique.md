@@ -24,6 +24,9 @@ ssh -L 5432:localhost:5432 -p 8090 mmtadmin@102.16.7.154
 - script pour la creation des tables to include
 * on se focalise sur la RMA 
 
+### hdfs en safemode
+- just desctivate this mode
+
 ## ETAPE 
 - faire marche discovery.py pour le 1 base MAVIS (avec table _to_ include)
 - inclue un diagramme de l’architecture logicielle (ex. : ingestion → transformation FHIR → datalake → visualisation)
