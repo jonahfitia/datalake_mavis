@@ -27,7 +27,6 @@
       "password": "jonah",
       "database": "mmt_db"
     },
-    "tables_to_include": [
-    ]
+    "tables_to_include": []
   }
 ]

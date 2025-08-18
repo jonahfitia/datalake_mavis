@@ -1,0 +1,23 @@
+Chapitre;Codes;Titre
+I;A00-B99;Certaines maladies infectieuses et parasitaires
+II;C00-D48;Tumeurs
+III;D50-D89;Maladies du sang et des organes hématopoïétiques et certains troubles du système immunitaire
+IV;E00-E90;Maladies endocriniennes, nutritionnelles et métaboliques
+V;F00-F99;Troubles mentaux et du comportement
+VI;G00-G99;Maladies du système nerveux
+VII;H00-H59;Maladies de l'œil et de ses annexes
+VIII;H60-H95;Maladies de l'oreille et de l'apophyse mastoïde
+IX;I00-I99;Maladies de l'appareil circulatoire
+X;J00-J99;Maladies de l'appareil respiratoire
+XI;K00-K93;Maladies de l'appareil digestif
+XII;L00-L99;Maladies de la peau et du tissu cellulaire sous-cutané
+XIII;M00-M99;Maladies du système ostéo-articulaire, des muscles et du tissu conjonctif
+XIV;N00-N99;Maladies de l'appareil génito-urinaire
+XV;O00-O99;Grossesse, accouchement et puerpéralité
+XVI;P00-P96;Certaines affections dont l'origine se situe dans la période périnatale
+XVII;Q00-Q99;Malformations congénitales et anomalies chromosomiques
+XVIII;R00-R99;Symptômes, signes et résultats anormaux d'examens cliniques et de laboratoire, non classés ailleurs
+XIX;S00-T98;Lésions traumatiques, empoisonnements et certaines autres conséquences de causes externes
+XX;V01-Y98;Causes externes de morbidité et de mortalité
+XXI;Z00-Z99;Facteurs influant sur l'état de santé et motifs de recours aux services de santé
+XXII;U00-U99;Codes d'utilisation particulière

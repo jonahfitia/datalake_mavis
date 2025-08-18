@@ -1,0 +1,3780 @@
+[
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_inpatient_registration",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "nursing_plan",
+        "type": "text"
+      },
+      {
+        "name": "operating_physician",
+        "type": "integer"
+      },
+      {
+        "name": "discharge_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "admission_type",
+        "type": "character varying"
+      },
+      {
+        "name": "attending_physician",
+        "type": "integer"
+      },
+      {
+        "name": "discharge_plan",
+        "type": "text"
+      },
+      {
+        "name": "state",
+        "type": "character varying"
+      },
+      {
+        "name": "admission_reason",
+        "type": "integer"
+      },
+      {
+        "name": "patient",
+        "type": "integer"
+      },
+      {
+        "name": "info",
+        "type": "text"
+      },
+      {
+        "name": "name",
+        "type": "character varying"
+      },
+      {
+        "name": "hospitalization_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "bed",
+        "type": "integer"
+      },
+      {
+        "name": "nutrition_notes",
+        "type": "text"
+      },
+      {
+        "name": "icu",
+        "type": "boolean"
+      },
+      {
+        "name": "discharged_by",
+        "type": "integer"
+      },
+      {
+        "name": "institution",
+        "type": "integer"
+      },
+      {
+        "name": "discharge_reason",
+        "type": "character varying"
+      },
+      {
+        "name": "discharge_dx",
+        "type": "integer"
+      },
+      {
+        "name": "event",
+        "type": "integer"
+      }
+    ],
+    "row_count": 1,
+    "sample_data": [
+      {
+        "id": 1,
+        "create_date": "2013-09-30T23:37:35.594497",
+        "write_date": "2020-08-25T10:44:08.197936",
+        "create_uid": 1,
+        "write_uid": 19,
+        "nursing_plan": "",
+        "operating_physician": null,
+        "discharge_date": "2014-10-08T20:39:31",
+        "admission_type": "urgent",
+        "attending_physician": 1,
+        "discharge_plan": "",
+        "state": "done",
+        "admission_reason": 7990,
+        "patient": 1,
+        "info": "",
+        "name": "INPAC001",
+        "hospitalization_date": "2014-10-04T20:39:22",
+        "bed": 1,
+        "nutrition_notes": "",
+        "icu": false,
+        "discharged_by": 4,
+        "institution": null,
+        "discharge_reason": "home",
+        "discharge_dx": 1,
+        "event": null
+      }
+    ]
+  },
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_patient",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "family",
+        "type": "integer"
+      },
+      {
+        "name": "blood_type",
+        "type": "character varying"
+      },
+      {
+        "name": "general_info",
+        "type": "text"
+      },
+      {
+        "name": "primary_care_doctor",
+        "type": "integer"
+      },
+      {
+        "name": "critical_info",
+        "type": "text"
+      },
+      {
+        "name": "rh",
+        "type": "character varying"
+      },
+      {
+        "name": "current_address",
+        "type": "integer"
+      },
+      {
+        "name": "name",
+        "type": "integer"
+      },
+      {
+        "name": "dod",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "current_insurance",
+        "type": "integer"
+      },
+      {
+        "name": "cod",
+        "type": "integer"
+      },
+      {
+        "name": "deceased",
+        "type": "boolean"
+      },
+      {
+        "name": "works_at_home",
+        "type": "boolean"
+      },
+      {
+        "name": "prison_current",
+        "type": "boolean"
+      },
+      {
+        "name": "domestic_violence",
+        "type": "boolean"
+      },
+      {
+        "name": "hostile_area",
+        "type": "boolean"
+      },
+      {
+        "name": "sexual_abuse",
+        "type": "boolean"
+      },
+      {
+        "name": "hours_outside",
+        "type": "integer"
+      },
+      {
+        "name": "drug_addiction",
+        "type": "boolean"
+      },
+      {
+        "name": "school_withdrawal",
+        "type": "boolean"
+      },
+      {
+        "name": "income",
+        "type": "character varying"
+      },
+      {
+        "name": "single_parent",
+        "type": "boolean"
+      },
+      {
+        "name": "ses_notes",
+        "type": "text"
+      },
+      {
+        "name": "working_children",
+        "type": "boolean"
+      },
+      {
+        "name": "teenage_pregnancy",
+        "type": "boolean"
+      },
+      {
+        "name": "prison_past",
+        "type": "boolean"
+      },
+      {
+        "name": "relative_in_prison",
+        "type": "boolean"
+      },
+      {
+        "name": "pap_test_last",
+        "type": "date"
+      },
+      {
+        "name": "menopausal",
+        "type": "boolean"
+      },
+      {
+        "name": "menopause",
+        "type": "integer"
+      },
+      {
+        "name": "colposcopy_last",
+        "type": "date"
+      },
+      {
+        "name": "fertile",
+        "type": "boolean"
+      },
+      {
+        "name": "gravida",
+        "type": "integer"
+      },
+      {
+        "name": "pap_test",
+        "type": "boolean"
+      },
+      {
+        "name": "menarche",
+        "type": "integer"
+      },
+      {
+        "name": "colposcopy",
+        "type": "boolean"
+      },
+      {
+        "name": "mammography_last",
+        "type": "date"
+      },
+      {
+        "name": "full_term",
+        "type": "integer"
+      },
+      {
+        "name": "premature",
+        "type": "integer"
+      },
+      {
+        "name": "abortions",
+        "type": "integer"
+      },
+      {
+        "name": "stillbirths",
+        "type": "integer"
+      },
+      {
+        "name": "mammography",
+        "type": "boolean"
+      },
+      {
+        "name": "breast_self_examination",
+        "type": "boolean"
+      },
+      {
+        "name": "sexuality_info",
+        "type": "text"
+      },
+      {
+        "name": "smoking_number",
+        "type": "integer"
+      },
+      {
+        "name": "sexual_partners",
+        "type": "character varying"
+      },
+      {
+        "name": "soft_drinks",
+        "type": "boolean"
+      },
+      {
+        "name": "coffee",
+        "type": "boolean"
+      },
+      {
+        "name": "exercise_minutes_day",
+        "type": "integer"
+      },
+      {
+        "name": "sexual_practices",
+        "type": "character varying"
+      },
+      {
+        "name": "ex_drug_addict",
+        "type": "boolean"
+      },
+      {
+        "name": "sexual_preferences",
+        "type": "character varying"
+      },
+      {
+        "name": "car_child_safety",
+        "type": "boolean"
+      },
+      {
+        "name": "alcohol",
+        "type": "boolean"
+      },
+      {
+        "name": "ex_alcoholic",
+        "type": "boolean"
+      },
+      {
+        "name": "age_start_drugs",
+        "type": "integer"
+      },
+      {
+        "name": "number_of_meals",
+        "type": "integer"
+      },
+      {
+        "name": "coffee_cups",
+        "type": "integer"
+      },
+      {
+        "name": "exercise",
+        "type": "boolean"
+      },
+      {
+        "name": "sex_with_prostitutes",
+        "type": "boolean"
+      },
+      {
+        "name": "sleep_during_daytime",
+        "type": "boolean"
+      },
+      {
+        "name": "age_quit_smoking",
+        "type": "integer"
+      },
+      {
+        "name": "ex_smoker",
+        "type": "boolean"
+      },
+      {
+        "name": "lifestyle_info",
+        "type": "text"
+      },
+      {
+        "name": "car_seat_belt",
+        "type": "boolean"
+      },
+      {
+        "name": "diet_info",
+        "type": "character varying"
+      },
+      {
+        "name": "drug_iv",
+        "type": "boolean"
+      },
+      {
+        "name": "second_hand_smoker",
+        "type": "boolean"
+      },
+      {
+        "name": "age_quit_drugs",
+        "type": "integer"
+      },
+      {
+        "name": "alcohol_liquor_number",
+        "type": "integer"
+      },
+      {
+        "name": "eats_alone",
+        "type": "boolean"
+      },
+      {
+        "name": "age_quit_drinking",
+        "type": "integer"
+      },
+      {
+        "name": "sex_oral",
+        "type": "character varying"
+      },
+      {
+        "name": "home_safety",
+        "type": "boolean"
+      },
+      {
+        "name": "age_start_drinking",
+        "type": "integer"
+      },
+      {
+        "name": "first_sexual_encounter",
+        "type": "integer"
+      },
+      {
+        "name": "smoking",
+        "type": "boolean"
+      },
+      {
+        "name": "sex_anal",
+        "type": "character varying"
+      },
+      {
+        "name": "age_start_smoking",
+        "type": "integer"
+      },
+      {
+        "name": "sexual_partners_number",
+        "type": "integer"
+      },
+      {
+        "name": "car_revision",
+        "type": "boolean"
+      },
+      {
+        "name": "motorcycle_rider",
+        "type": "boolean"
+      },
+      {
+        "name": "helmet",
+        "type": "boolean"
+      },
+      {
+        "name": "alcohol_beer_number",
+        "type": "integer"
+      },
+      {
+        "name": "traffic_laws",
+        "type": "boolean"
+      },
+      {
+        "name": "sleep_hours",
+        "type": "integer"
+      },
+      {
+        "name": "alcohol_wine_number",
+        "type": "integer"
+      },
+      {
+        "name": "diet",
+        "type": "boolean"
+      },
+      {
+        "name": "anticonceptive",
+        "type": "character varying"
+      },
+      {
+        "name": "prostitute",
+        "type": "boolean"
+      },
+      {
+        "name": "salt",
+        "type": "boolean"
+      },
+      {
+        "name": "drug_usage",
+        "type": "boolean"
+      },
+      {
+        "name": "diet_belief",
+        "type": "integer"
+      },
+      {
+        "name": "vegetarian_type",
+        "type": "integer"
+      },
+      {
+        "name": "biological_sex",
+        "type": "character varying"
+      },
+      {
+        "name": "amputee",
+        "type": "boolean"
+      },
+      {
+        "name": "disability",
+        "type": "boolean"
+      },
+      {
+        "name": "uxo",
+        "type": "boolean"
+      },
+      {
+        "name": "amputee_since",
+        "type": "date"
+      },
+      {
+        "name": "active",
+        "type": "boolean"
+      },
+      {
+        "name": "hb",
+        "type": "character varying"
+      }
+    ],
+    "row_count": 9791,
+    "sample_data": [
+      {
+        "id": 40,
+        "create_date": "2020-09-25T08:13:27.882187",
+        "write_date": "2020-09-25T09:18:58.335201",
+        "create_uid": 26,
+        "write_uid": 32,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": 11,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 450,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 42,
+        "create_date": "2020-09-28T11:50:08.427121",
+        "write_date": null,
+        "create_uid": 41,
+        "write_uid": null,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": null,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 456,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 43,
+        "create_date": "2020-09-28T12:31:50.855284",
+        "write_date": "2020-09-28T13:21:39.108433",
+        "create_uid": 26,
+        "write_uid": 31,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": 10,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 457,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 1,
+        "create_date": "2013-09-30T01:03:21.430344",
+        "write_date": "2020-08-25T10:38:42.333936",
+        "create_uid": 1,
+        "write_uid": 19,
+        "family": 1,
+        "blood_type": "A",
+        "general_info": "",
+        "primary_care_doctor": 1,
+        "critical_info": "",
+        "rh": "+",
+        "current_address": null,
+        "name": 2,
+        "dod": null,
+        "current_insurance": 1,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": 8,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": 1,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": 0,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": "f",
+        "amputee": false,
+        "disability": null,
+        "uxo": null,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 22,
+        "create_date": "2020-08-31T12:55:18.685198",
+        "write_date": "2020-09-01T07:17:11.774663",
+        "create_uid": 26,
+        "write_uid": 31,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": 10,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 233,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 25,
+        "create_date": "2020-09-07T06:24:59.064071",
+        "write_date": "2020-09-07T07:44:14.444860",
+        "create_uid": 26,
+        "write_uid": 31,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": 10,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 276,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 26,
+        "create_date": "2020-09-07T08:15:09.214735",
+        "write_date": "2020-09-07T08:47:35.670834",
+        "create_uid": 26,
+        "write_uid": 31,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": 10,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 287,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 27,
+        "create_date": "2020-09-09T06:52:30.745860",
+        "write_date": null,
+        "create_uid": 41,
+        "write_uid": null,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": null,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 158,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 28,
+        "create_date": "2020-09-09T10:49:17.972341",
+        "write_date": null,
+        "create_uid": 35,
+        "write_uid": null,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": null,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 365,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      },
+      {
+        "id": 30,
+        "create_date": "2020-09-14T08:09:33.316161",
+        "write_date": "2020-09-15T06:24:17.146906",
+        "create_uid": 26,
+        "write_uid": 29,
+        "family": null,
+        "blood_type": null,
+        "general_info": "",
+        "primary_care_doctor": 10,
+        "critical_info": "",
+        "rh": null,
+        "current_address": null,
+        "name": 373,
+        "dod": null,
+        "current_insurance": null,
+        "cod": null,
+        "deceased": false,
+        "works_at_home": false,
+        "prison_current": false,
+        "domestic_violence": false,
+        "hostile_area": false,
+        "sexual_abuse": false,
+        "hours_outside": null,
+        "drug_addiction": false,
+        "school_withdrawal": false,
+        "income": null,
+        "single_parent": false,
+        "ses_notes": "",
+        "working_children": false,
+        "teenage_pregnancy": false,
+        "prison_past": false,
+        "relative_in_prison": false,
+        "pap_test_last": null,
+        "menopausal": false,
+        "menopause": null,
+        "colposcopy_last": null,
+        "fertile": false,
+        "gravida": null,
+        "pap_test": false,
+        "menarche": null,
+        "colposcopy": false,
+        "mammography_last": null,
+        "full_term": null,
+        "premature": null,
+        "abortions": null,
+        "stillbirths": null,
+        "mammography": false,
+        "breast_self_examination": false,
+        "sexuality_info": "",
+        "smoking_number": null,
+        "sexual_partners": null,
+        "soft_drinks": false,
+        "coffee": false,
+        "exercise_minutes_day": null,
+        "sexual_practices": null,
+        "ex_drug_addict": false,
+        "sexual_preferences": null,
+        "car_child_safety": false,
+        "alcohol": false,
+        "ex_alcoholic": false,
+        "age_start_drugs": null,
+        "number_of_meals": null,
+        "coffee_cups": null,
+        "exercise": false,
+        "sex_with_prostitutes": false,
+        "sleep_during_daytime": false,
+        "age_quit_smoking": null,
+        "ex_smoker": false,
+        "lifestyle_info": "",
+        "car_seat_belt": false,
+        "diet_info": "",
+        "drug_iv": false,
+        "second_hand_smoker": false,
+        "age_quit_drugs": null,
+        "alcohol_liquor_number": null,
+        "eats_alone": false,
+        "age_quit_drinking": null,
+        "sex_oral": null,
+        "home_safety": false,
+        "age_start_drinking": null,
+        "first_sexual_encounter": null,
+        "smoking": false,
+        "sex_anal": null,
+        "age_start_smoking": null,
+        "sexual_partners_number": null,
+        "car_revision": false,
+        "motorcycle_rider": false,
+        "helmet": false,
+        "alcohol_beer_number": null,
+        "traffic_laws": false,
+        "sleep_hours": null,
+        "alcohol_wine_number": null,
+        "diet": false,
+        "anticonceptive": null,
+        "prostitute": false,
+        "salt": false,
+        "drug_usage": false,
+        "diet_belief": null,
+        "vegetarian_type": null,
+        "biological_sex": null,
+        "amputee": false,
+        "disability": false,
+        "uxo": false,
+        "amputee_since": null,
+        "active": true,
+        "hb": null
+      }
+    ]
+  },
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_patient_disease",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "treatment_description",
+        "type": "character varying"
+      },
+      {
+        "name": "healed_date",
+        "type": "date"
+      },
+      {
+        "name": "pathology",
+        "type": "integer"
+      },
+      {
+        "name": "disease_severity",
+        "type": "character varying"
+      },
+      {
+        "name": "is_allergy",
+        "type": "boolean"
+      },
+      {
+        "name": "healthprof",
+        "type": "integer"
+      },
+      {
+        "name": "pregnancy_warning",
+        "type": "boolean"
+      },
+      {
+        "name": "weeks_of_pregnancy",
+        "type": "integer"
+      },
+      {
+        "name": "is_on_treatment",
+        "type": "boolean"
+      },
+      {
+        "name": "diagnosed_date",
+        "type": "date"
+      },
+      {
+        "name": "extra_info",
+        "type": "text"
+      },
+      {
+        "name": "status",
+        "type": "character varying"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "date_stop_treatment",
+        "type": "date"
+      },
+      {
+        "name": "pcs_code",
+        "type": "integer"
+      },
+      {
+        "name": "is_infectious",
+        "type": "boolean"
+      },
+      {
+        "name": "allergy_type",
+        "type": "character varying"
+      },
+      {
+        "name": "name",
+        "type": "integer"
+      },
+      {
+        "name": "age",
+        "type": "integer"
+      },
+      {
+        "name": "date_start_treatment",
+        "type": "date"
+      },
+      {
+        "name": "short_comment",
+        "type": "character varying"
+      },
+      {
+        "name": "newborn_id",
+        "type": "integer"
+      },
+      {
+        "name": "institution",
+        "type": "integer"
+      }
+    ],
+    "row_count": 138,
+    "sample_data": [
+      {
+        "id": 34,
+        "create_date": "2020-12-18T14:12:25.318252",
+        "write_date": null,
+        "create_uid": 97,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 14336,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 65,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": null,
+        "extra_info": "",
+        "status": "c",
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 213,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 35,
+        "create_date": "2020-12-18T14:14:13.452411",
+        "write_date": null,
+        "create_uid": 97,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 4554,
+        "disease_severity": "2_mo",
+        "is_allergy": false,
+        "healthprof": 65,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": null,
+        "extra_info": "",
+        "status": "c",
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 213,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 36,
+        "create_date": "2020-12-18T14:17:25.491605",
+        "write_date": null,
+        "create_uid": 97,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 1015,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 65,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": null,
+        "extra_info": "appendicectomie \u00e0 l'age de 4 ans",
+        "status": null,
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 213,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 37,
+        "create_date": "2020-12-30T07:52:09.044839",
+        "write_date": null,
+        "create_uid": 35,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 3676,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 14,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": true,
+        "diagnosed_date": null,
+        "extra_info": "",
+        "status": "c",
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 222,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 38,
+        "create_date": "2020-12-30T07:53:13.771575",
+        "write_date": null,
+        "create_uid": 35,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 3698,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 14,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": null,
+        "extra_info": "",
+        "status": null,
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 222,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 39,
+        "create_date": "2021-01-13T07:13:22.848032",
+        "write_date": null,
+        "create_uid": 35,
+        "write_uid": null,
+        "treatment_description": "FLUDEX 1cp/jr - ARBITEL 1cp/jr",
+        "healed_date": null,
+        "pathology": 3676,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 14,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": true,
+        "diagnosed_date": "2008-01-01",
+        "extra_info": "",
+        "status": "c",
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 262,
+        "age": 56,
+        "date_start_treatment": null,
+        "short_comment": "FLUDEX 1cp/jr - ARBITEL 1cp/jr",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 40,
+        "create_date": "2021-01-26T09:14:15.885052",
+        "write_date": null,
+        "create_uid": 35,
+        "write_uid": null,
+        "treatment_description": "LOXEN 50mg comprim\u00e9 LP 1 - 0 - 1;  PROPRANOLOL 40mg comprim\u00e9 1 - 0 - 0",
+        "healed_date": null,
+        "pathology": 3676,
+        "disease_severity": "3_sv",
+        "is_allergy": false,
+        "healthprof": 14,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": true,
+        "diagnosed_date": "2017-01-01",
+        "extra_info": "",
+        "status": "c",
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 383,
+        "age": 27,
+        "date_start_treatment": null,
+        "short_comment": "LOXEN 50mg comprim\u00e9 LP 1 - 0 - 1;  PROPRANOLOL 40mg comprim\u00e9 1 - 0 - 0",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 41,
+        "create_date": "2021-02-03T05:22:31.924992",
+        "write_date": null,
+        "create_uid": 97,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 14335,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 65,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": "2020-07-17",
+        "extra_info": "Patiente ayant pr\u00e9sent\u00e9 des symptomatologies de COVID, n'ayant pas fait de PCR ni TDR COVID,; mais trait\u00e9e d'embl\u00e9e comme COVID forme simple.\ngu\u00e9rison apr\u00e8s traitement",
+        "status": null,
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 474,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 42,
+        "create_date": "2021-02-05T13:42:24.098781",
+        "write_date": null,
+        "create_uid": 87,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 14072,
+        "disease_severity": null,
+        "is_allergy": false,
+        "healthprof": 55,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": null,
+        "extra_info": "",
+        "status": null,
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": false,
+        "allergy_type": null,
+        "name": 511,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      },
+      {
+        "id": 43,
+        "create_date": "2021-02-06T13:21:58.934760",
+        "write_date": null,
+        "create_uid": 35,
+        "write_uid": null,
+        "treatment_description": "",
+        "healed_date": null,
+        "pathology": 14335,
+        "disease_severity": "3_sv",
+        "is_allergy": false,
+        "healthprof": 14,
+        "pregnancy_warning": false,
+        "weeks_of_pregnancy": null,
+        "is_on_treatment": false,
+        "diagnosed_date": null,
+        "extra_info": "",
+        "status": "i",
+        "is_active": true,
+        "date_stop_treatment": null,
+        "pcs_code": null,
+        "is_infectious": true,
+        "allergy_type": null,
+        "name": 262,
+        "age": null,
+        "date_start_treatment": null,
+        "short_comment": "",
+        "newborn_id": null,
+        "institution": 5
+      }
+    ]
+  },
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_patient_evaluation",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "information_source",
+        "type": "character varying"
+      },
+      {
+        "name": "info_diagnosis",
+        "type": "text"
+      },
+      {
+        "name": "orientation",
+        "type": "boolean"
+      },
+      {
+        "name": "visit_type",
+        "type": "character varying"
+      },
+      {
+        "name": "evaluation_type",
+        "type": "character varying"
+      },
+      {
+        "name": "malnutrition",
+        "type": "boolean"
+      },
+      {
+        "name": "height",
+        "type": "double precision"
+      },
+      {
+        "name": "dehydration",
+        "type": "boolean"
+      },
+      {
+        "name": "tag",
+        "type": "integer"
+      },
+      {
+        "name": "tremor",
+        "type": "boolean"
+      },
+      {
+        "name": "present_illness",
+        "type": "text"
+      },
+      {
+        "name": "appointment",
+        "type": "integer"
+      },
+      {
+        "name": "evaluation_start",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "user_id",
+        "type": "integer"
+      },
+      {
+        "name": "mood",
+        "type": "character varying"
+      },
+      {
+        "name": "healthprof",
+        "type": "integer"
+      },
+      {
+        "name": "knowledge_current_events",
+        "type": "boolean"
+      },
+      {
+        "name": "loc_verbal",
+        "type": "character varying"
+      },
+      {
+        "name": "next_evaluation",
+        "type": "integer"
+      },
+      {
+        "name": "state",
+        "type": "character varying"
+      },
+      {
+        "name": "loc_motor",
+        "type": "character varying"
+      },
+      {
+        "name": "reliable_info",
+        "type": "boolean"
+      },
+      {
+        "name": "systolic",
+        "type": "integer"
+      },
+      {
+        "name": "vocabulary",
+        "type": "boolean"
+      },
+      {
+        "name": "praxis",
+        "type": "boolean"
+      },
+      {
+        "name": "hip",
+        "type": "double precision"
+      },
+      {
+        "name": "memory",
+        "type": "boolean"
+      },
+      {
+        "name": "abstraction",
+        "type": "boolean"
+      },
+      {
+        "name": "patient",
+        "type": "integer"
+      },
+      {
+        "name": "derived_from",
+        "type": "integer"
+      },
+      {
+        "name": "specialty",
+        "type": "integer"
+      },
+      {
+        "name": "loc",
+        "type": "integer"
+      },
+      {
+        "name": "glycemia",
+        "type": "double precision"
+      },
+      {
+        "name": "head_circumference",
+        "type": "double precision"
+      },
+      {
+        "name": "bmi",
+        "type": "double precision"
+      },
+      {
+        "name": "respiratory_rate",
+        "type": "integer"
+      },
+      {
+        "name": "weight",
+        "type": "double precision"
+      },
+      {
+        "name": "derived_to",
+        "type": "integer"
+      },
+      {
+        "name": "hba1c",
+        "type": "double precision"
+      },
+      {
+        "name": "violent",
+        "type": "boolean"
+      },
+      {
+        "name": "directions",
+        "type": "text"
+      },
+      {
+        "name": "evaluation_summary",
+        "type": "text"
+      },
+      {
+        "name": "cholesterol_total",
+        "type": "integer"
+      },
+      {
+        "name": "judgment",
+        "type": "boolean"
+      },
+      {
+        "name": "temperature",
+        "type": "double precision"
+      },
+      {
+        "name": "osat",
+        "type": "integer"
+      },
+      {
+        "name": "evaluation_endtime",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "calculation_ability",
+        "type": "boolean"
+      },
+      {
+        "name": "bpm",
+        "type": "integer"
+      },
+      {
+        "name": "chief_complaint",
+        "type": "character varying"
+      },
+      {
+        "name": "loc_eyes",
+        "type": "character varying"
+      },
+      {
+        "name": "abdominal_circ",
+        "type": "double precision"
+      },
+      {
+        "name": "object_recognition",
+        "type": "boolean"
+      },
+      {
+        "name": "signed_by",
+        "type": "integer"
+      },
+      {
+        "name": "diagnosis",
+        "type": "integer"
+      },
+      {
+        "name": "whr",
+        "type": "double precision"
+      },
+      {
+        "name": "ldl",
+        "type": "integer"
+      },
+      {
+        "name": "notes_complaint",
+        "type": "text"
+      },
+      {
+        "name": "hdl",
+        "type": "integer"
+      },
+      {
+        "name": "urgency",
+        "type": "character varying"
+      },
+      {
+        "name": "diastolic",
+        "type": "integer"
+      },
+      {
+        "name": "institution",
+        "type": "integer"
+      },
+      {
+        "name": "digital_signature",
+        "type": "text"
+      },
+      {
+        "name": "document_digest",
+        "type": "character varying"
+      },
+      {
+        "name": "serializer",
+        "type": "text"
+      },
+      {
+        "name": "code",
+        "type": "character varying"
+      },
+      {
+        "name": "discharge_reason",
+        "type": "character varying"
+      },
+      {
+        "name": "related_condition",
+        "type": "integer"
+      },
+      {
+        "name": "inpatient_registration_code",
+        "type": "integer"
+      },
+      {
+        "name": "psychological_assessment",
+        "type": "text"
+      },
+      {
+        "name": "departement",
+        "type": "character varying"
+      },
+      {
+        "name": "rma",
+        "type": "integer"
+      }
+    ],
+    "row_count": 4623,
+    "sample_data": [
+      {
+        "id": 165,
+        "create_date": "2020-11-05T09:55:25.445287",
+        "write_date": null,
+        "create_uid": 28,
+        "write_uid": null,
+        "information_source": "Self",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 104.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "",
+        "appointment": null,
+        "evaluation_start": "2020-11-05T09:50:29",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "in_progress",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": null,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 128,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 13.87,
+        "respiratory_rate": 18,
+        "weight": 15.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "",
+        "evaluation_summary": "",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 37.5,
+        "osat": 97,
+        "evaluation_endtime": null,
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 97,
+        "chief_complaint": "",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": null,
+        "diagnosis": null,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": null,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000141",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 194,
+        "create_date": "2020-11-16T12:07:55.010939",
+        "write_date": "2020-11-17T06:16:16.931574",
+        "create_uid": 28,
+        "write_uid": 31,
+        "information_source": "Self /consultation ATRIUM",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 176.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "notion d'accident de la voie publique (moto) il y a 2 mois occasionnant une fracture bi- mall\u00e9olaire puis il y a quelques jours, il y eu apparition d'une douleur et tum\u00e9faction sur la cicatrice post-op\u00e9ratoire au niveau du cheville gauche op\u00e9r\u00e9e",
+        "appointment": null,
+        "evaluation_start": "2020-11-16T12:06:53",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 145,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 158,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 20.98,
+        "respiratory_rate": 14,
+        "weight": 65.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "orthop\u00e9dique",
+        "evaluation_summary": "douleur et tum\u00e9faction au niveau cheville gauche",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 37.0,
+        "osat": 97,
+        "evaluation_endtime": "2020-11-17T06:16:16",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 85,
+        "chief_complaint": "Douleur et tum\u00e9faction cheville gauche",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 10,
+        "diagnosis": null,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 89,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000170",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 171,
+        "create_date": "2020-11-06T12:12:21.874546",
+        "write_date": "2020-11-09T11:04:13.882076",
+        "create_uid": 28,
+        "write_uid": 66,
+        "information_source": "Self / Consultation ATRIUM",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 146.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "m\u00e9trorragie depuis 15 jours, cycles irr\u00e9guli\u00e8res / trouble hormonale\nnulligeste\nPR \u00e0 10 ans\nd\u00e9sirs de grossesse depuis 1 an\nEchographie 20 Ao\u00fbt : r\u00e0s\nsans ant\u00e9c\u00e9dent m\u00e9dico-chirurgicaux",
+        "appointment": null,
+        "evaluation_start": "2020-11-06T12:08:39",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 138,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 135,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 25.33,
+        "respiratory_rate": 15,
+        "weight": 54.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "Exacyl\nDuphaston\nFerro denk\nbilan hormonal : FSH , LH, Pg, OESTROG7NE",
+        "evaluation_summary": "",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 36.9,
+        "osat": 99,
+        "evaluation_endtime": "2020-11-09T11:04:13",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 84,
+        "chief_complaint": "Metrorragie",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 37,
+        "diagnosis": null,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 83,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000147",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 199,
+        "create_date": "2020-11-19T12:35:39.455473",
+        "write_date": "2020-11-19T12:35:39.728777",
+        "create_uid": 31,
+        "write_uid": 31,
+        "information_source": "Self / consultation ATRIUM",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": null,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "notion de chute de sa hauteur hier occasionnant une douleur au niveau du poignet gauche",
+        "appointment": null,
+        "evaluation_start": "2020-11-19T09:00:16",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 10,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": null,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 165,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "Orthop\u00e9dique",
+        "evaluation_summary": "Douleur sur l\u2019\u00e9piphyse stylo\u00efde du radius gauche",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": null,
+        "osat": null,
+        "evaluation_endtime": "2020-11-19T12:35:39",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": null,
+        "chief_complaint": "Douleur au niveau du poignet gauche post traumatique",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 10,
+        "diagnosis": null,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": null,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000175",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 54,
+        "create_date": "2020-09-29T12:03:47.283210",
+        "write_date": "2020-09-29T12:42:40.460310",
+        "create_uid": 28,
+        "write_uid": 77,
+        "information_source": "Self",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 39.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "L'enfant a \u00e9t\u00e9 victime d'une chute le 20 Septembre 2020 \u00e0 Manakara occasionnant un traumatisme cr\u00e2nien \u00e0 impact occipital. Elle pr\u00e9sentait des crises convulsives trois fois motivant une Evacuation sanitaire \u00e0 Tana. Elle a \u00e9t\u00e9 hospitalis\u00e9e au Service de N\u00e9onatalogie et P\u00e9diatrie du CENHOPSOA du 21 au 22 Septembre 2020. Actuellement, elle ne pr\u00e9sente aucune complication du traumatisme cr\u00e2nien.",
+        "appointment": null,
+        "evaluation_start": "2020-09-29T12:02:49",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "signed",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": null,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 46,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 85.47,
+        "respiratory_rate": 18,
+        "weight": 13.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "consignes ",
+        "evaluation_summary": "Glasgow 15/15, sans signes neurologiques de focalisation.",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 36.5,
+        "osat": 98,
+        "evaluation_endtime": "2020-09-29T12:38:13",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 102,
+        "chief_complaint": "contr\u00f4le d'un traumatisme cr\u00e2nien",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 48,
+        "diagnosis": 8394,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": null,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": "8bf64926be93bf10965bafbca5cd5733ca3ed20a1cb514ae40b22bc16dff73f9b3ff609f81fe59f28434e214459fff4a08650d50ed5d824655a9f4459fc27193",
+        "serializer": "{\"Patient\": \"NG Chan Alicia\", \"Start\": \"2020-09-29 12:02:49\", \"End\": \"2020-09-29 12:38:13\", \"Initiated_by\": \"FENOMANARIVO Sarobidy Patricia\", \"Signed_by\": \"Patrick RAKOTOZANANY\", \"Specialty\": \"\", \"Visit_type\": \"None\", \"Urgency\": \"None\", \"Information_source\": \"Self\", \"Reliable_info\": true, \"Chief_complaint\": \"contr\u00f4le d'un traumatisme cr\u00e2nien\", \"Present_illness\": \"L'enfant a \u00e9t\u00e9 victime d'une chute le 20 Septembre 2020 \u00e0 Manakara occasionnant un traumatisme cr\u00e2nien \u00e0 impact occipital. Elle pr\u00e9sentait des crises convulsives trois fois motivant une Evacuation sanitaire \u00e0 Tana. Elle a \u00e9t\u00e9 hospitalis\u00e9e au Service de N\u00e9onatalogie et P\u00e9diatrie du CENHOPSOA du 21 au 22 Septembre 2020. Actuellement, elle ne pr\u00e9sente aucune complication du traumatisme cr\u00e2nien.\", \"Evaluation_summary\": \"Glasgow 15/15, sans signes neurologiques de focalisation.\", \"Signs_and_Symptoms\": \"\", \"Glycemia\": \"\", \"Hba1c\": \"\", \"Total_Cholesterol\": \"\", \"HDL\": \"\", \"LDL\": \"\", \"TAG\": \"\", \"Systolic\": \"\", \"Diastolic\": \"\", \"BPM\": 102, \"Respiratory_rate\": 18, \"Osat\": 98, \"Malnutrition\": false, \"Dehydration\": false, \"Temperature\": 36.5, \"Weight\": 13.0, \"Height\": 39.0, \"BMI\": 85.47, \"Head_circ\": \"\", \"Abdominal_cir\": \"\", \"Hip\": \"\", \"WHR\": \"\", \"Loc\": 15, \"Loc_eyes\": \"4\", \"Loc_verbal\": \"5\", \"Loc_motor\": \"6\", \"Tremor\": false, \"Violent\": false, \"Mood\": \"None\", \"Orientation\": false, \"Memory\": false, \"Knowledge_current_events\": false, \"Judgment\": false, \"Abstraction\": false, \"Vocabulary\": false, \"Calculation\": false, \"Object_recognition\": false, \"Praxis\": false, \"Diagnosis\": \"S06.0 : Commotion\", \"Secondary_conditions\": \"\", \"DDX\": \"\", \"Info_Diagnosis\": \"\", \"Treatment_plan\": \"consignes \", \"Procedures\": \"\", \"Institution\": \"AROVY S.A.\", \"Derived_from\": \"\", \"Derived_to\": \"\"}",
+        "code": "EVAL 2020/000038",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 57,
+        "create_date": "2020-09-30T13:31:31.571415",
+        "write_date": "2020-10-01T06:12:55.321990",
+        "create_uid": 28,
+        "write_uid": 78,
+        "information_source": "Self / Consultation ATRIUM",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 166.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "d\u00e9but il y a 3 semaines par notion de rhinorrh\u00e9e +++ suivi de toux s\u00e8che puis devenue productive avec des expectoration jaun\u00e2tre sans notion de fi\u00e8vre trait\u00e9e par de l'autom\u00e9dication notamment Augmentin 1g 1sachet*2 par jours pendant 8jours, Toplexyl Sirop, Exomuc sachet 2 fois par jour, Fervex poudre sachet, Rhinathiol 1 cuill\u00e8re \u00e0 caf\u00e9*3.",
+        "appointment": null,
+        "evaluation_start": "2020-09-30T13:28:07",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 103,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 39,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 15.97,
+        "respiratory_rate": 20,
+        "weight": 44.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "Antihistaminique\nAntibiotique\n",
+        "evaluation_summary": "",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 36.5,
+        "osat": 99,
+        "evaluation_endtime": "2020-10-01T06:12:55",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 87,
+        "chief_complaint": "rhinorrh\u00e9e",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 49,
+        "diagnosis": 9629,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 61,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000041",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 60,
+        "create_date": "2020-10-02T12:22:16.504030",
+        "write_date": "2020-10-02T13:21:03.597064",
+        "create_uid": 28,
+        "write_uid": 90,
+        "information_source": "Self",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 155.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "idem",
+        "appointment": null,
+        "evaluation_start": "2020-10-02T13:30:11",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "in_progress",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 130,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 44,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 24.14,
+        "respiratory_rate": 16,
+        "weight": 58.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "anti chs\nanti agregant",
+        "evaluation_summary": "souffles cardiaques",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 36.6,
+        "osat": 96,
+        "evaluation_endtime": "2020-10-02T14:04:45",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 93,
+        "chief_complaint": "controle et suivi",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": null,
+        "diagnosis": null,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 65,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000044",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 43,
+        "create_date": "2020-09-23T09:27:19.928793",
+        "write_date": "2020-09-23T11:07:31.910508",
+        "create_uid": 28,
+        "write_uid": 47,
+        "information_source": "Self/consultation Atrium",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": null,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "Cystite en 2013\nsyndrome cyctique depuis d\u00e9cembre 2019, a re\u00e7u levofloxacine plusieurs jours puis Ciprofloxacine sans am\u00e9lioration.\nApparition r\u00e9cente de h\u00e9maturie avec cailolts.\nNB: aspect \u00e9chographique de fibrome sous muqueux. Gyn\u00e9co \u00e0 consulter.\nNB2: Ant\u00e9c\u00e9dent familial de diab\u00e8te. GAJ personnelle normale.\nAnxi\u00e9t\u00e9 justifi\u00e9e",
+        "appointment": null,
+        "evaluation_start": "2020-09-23T09:25:27",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 142,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 36,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": null,
+        "respiratory_rate": 23,
+        "weight": null,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "Aucun. attente des examens biologiques en cours et \u00e9cho v\u00e9sicale",
+        "evaluation_summary": "RAS",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 36.5,
+        "osat": 98,
+        "evaluation_endtime": "2020-09-23T11:05:28",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 79,
+        "chief_complaint": "cystite r\u00e9cidivante",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 19,
+        "diagnosis": 6046,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 90,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000027",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 42,
+        "create_date": "2020-09-23T09:23:35.188011",
+        "write_date": "2020-09-23T11:29:21.061933",
+        "create_uid": 28,
+        "write_uid": 47,
+        "information_source": "Self",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 170.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "Hospitalis\u00e9 HJRB pour OMI et HTA en ao\u00fbt 2020\nInsuffisance r\u00e9nale \u00e0 255, prot\u00e9inurie \u00e0 14g/24h, diab\u00e8te d\u00e9s\u00e9quilibr\u00e9, HTA, \nConclusion actuelle: ND4 avec PU 14g et IR \u00e0 29ml/mn, hypoprotid\u00e9mie et hypoalbumin\u00e9mie\nRD 111x67x47 RG 116x68x60 derni\u00e8re cr\u00e9at 210 en 8/20",
+        "appointment": null,
+        "evaluation_start": "2020-09-23T09:21:05",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 182,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 35,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 23.53,
+        "respiratory_rate": 20,
+        "weight": 68.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "Titration ARA2 APROVEL 75mg\nObjectifs expliqu\u00e9s (Glyc\u00e9miques, Tensionnels, PU)",
+        "evaluation_summary": "",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 35.4,
+        "osat": 98,
+        "evaluation_endtime": "2020-09-23T11:29:21",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 66,
+        "chief_complaint": "Insuffisance r\u00e9nale",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 19,
+        "diagnosis": 14298,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 95,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000026",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      },
+      {
+        "id": 51,
+        "create_date": "2020-09-28T13:05:08.863683",
+        "write_date": "2020-09-28T13:46:16.038797",
+        "create_uid": 28,
+        "write_uid": 31,
+        "information_source": "self/ Consultation ATRIUM",
+        "info_diagnosis": "",
+        "orientation": false,
+        "visit_type": null,
+        "evaluation_type": "outpatient",
+        "malnutrition": false,
+        "height": 166.0,
+        "dehydration": false,
+        "tag": null,
+        "tremor": false,
+        "present_illness": "chute de sa hauteur par tr\u00e9buchement",
+        "appointment": null,
+        "evaluation_start": "2020-09-28T13:30:26",
+        "user_id": null,
+        "mood": null,
+        "healthprof": 7,
+        "knowledge_current_events": false,
+        "loc_verbal": "5",
+        "next_evaluation": null,
+        "state": "done",
+        "loc_motor": "6",
+        "reliable_info": true,
+        "systolic": 141,
+        "vocabulary": false,
+        "praxis": false,
+        "hip": null,
+        "memory": false,
+        "abstraction": false,
+        "patient": 43,
+        "derived_from": null,
+        "specialty": null,
+        "loc": 15,
+        "glycemia": null,
+        "head_circumference": null,
+        "bmi": 20.69,
+        "respiratory_rate": 18,
+        "weight": 57.0,
+        "derived_to": null,
+        "hba1c": null,
+        "violent": false,
+        "directions": "soin syndactilisation",
+        "evaluation_summary": "d\u00e9formation et douleur au niveau main gauche",
+        "cholesterol_total": null,
+        "judgment": false,
+        "temperature": 36.8,
+        "osat": 97,
+        "evaluation_endtime": "2020-09-28T13:31:43",
+        "notes": "",
+        "calculation_ability": false,
+        "bpm": 66,
+        "chief_complaint": "Douleur et impotence fonctionnelle main gauche",
+        "loc_eyes": "4",
+        "abdominal_circ": null,
+        "object_recognition": false,
+        "signed_by": 10,
+        "diagnosis": null,
+        "whr": null,
+        "ldl": null,
+        "notes_complaint": null,
+        "hdl": null,
+        "urgency": null,
+        "diastolic": 75,
+        "institution": 5,
+        "digital_signature": null,
+        "document_digest": null,
+        "serializer": null,
+        "code": "EVAL 2020/000035",
+        "discharge_reason": "home",
+        "related_condition": null,
+        "inpatient_registration_code": null,
+        "psychological_assessment": "",
+        "departement": null,
+        "rma": null
+      }
+    ]
+  },
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_patient_lab_test",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "name",
+        "type": "integer"
+      },
+      {
+        "name": "request",
+        "type": "integer"
+      },
+      {
+        "name": "patient_id",
+        "type": "integer"
+      },
+      {
+        "name": "urgent",
+        "type": "boolean"
+      },
+      {
+        "name": "state",
+        "type": "character varying"
+      },
+      {
+        "name": "date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "doctor_id",
+        "type": "integer"
+      },
+      {
+        "name": "service",
+        "type": "integer"
+      }
+    ],
+    "row_count": 7102,
+    "sample_data": [
+      {
+        "id": 96,
+        "create_date": "2020-10-23T11:11:26.049399",
+        "write_date": "2020-10-23T11:11:28.253674",
+        "create_uid": 33,
+        "write_uid": 33,
+        "name": 193,
+        "request": 45,
+        "patient_id": 114,
+        "urgent": false,
+        "state": "ordered",
+        "date": "2020-10-23T11:11:08",
+        "doctor_id": 12,
+        "service": null
+      },
+      {
+        "id": 98,
+        "create_date": "2020-10-23T13:27:50.581257",
+        "write_date": "2020-10-23T13:27:52.902537",
+        "create_uid": 33,
+        "write_uid": 33,
+        "name": 106,
+        "request": 47,
+        "patient_id": 114,
+        "urgent": false,
+        "state": "ordered",
+        "date": "2020-10-23T13:26:53",
+        "doctor_id": 12,
+        "service": null
+      },
+      {
+        "id": 101,
+        "create_date": "2020-10-27T09:04:16.924986",
+        "write_date": "2020-10-28T07:51:53.472830",
+        "create_uid": 177,
+        "write_uid": 26,
+        "name": 151,
+        "request": 50,
+        "patient_id": 117,
+        "urgent": false,
+        "state": "ordered",
+        "date": "2020-10-27T09:03:51",
+        "doctor_id": 146,
+        "service": 112
+      },
+      {
+        "id": 103,
+        "create_date": "2020-10-27T09:05:49.888271",
+        "write_date": "2020-10-28T07:51:53.472830",
+        "create_uid": 177,
+        "write_uid": 26,
+        "name": 162,
+        "request": 52,
+        "patient_id": 117,
+        "urgent": false,
+        "state": "ordered",
+        "date": "2020-10-27T09:05:26",
+        "doctor_id": 146,
+        "service": 112
+      },
+      {
+        "id": 106,
+        "create_date": "2020-10-29T04:50:50.011175",
+        "write_date": null,
+        "create_uid": 26,
+        "write_uid": null,
+        "name": 151,
+        "request": 55,
+        "patient_id": 116,
+        "urgent": false,
+        "state": "draft",
+        "date": "2020-10-30T04:00:59",
+        "doctor_id": 37,
+        "service": 116
+      },
+      {
+        "id": 107,
+        "create_date": "2020-10-29T04:50:50.011175",
+        "write_date": null,
+        "create_uid": 26,
+        "write_uid": null,
+        "name": 116,
+        "request": 55,
+        "patient_id": 116,
+        "urgent": false,
+        "state": "draft",
+        "date": "2020-10-30T04:00:59",
+        "doctor_id": 37,
+        "service": 116
+      },
+      {
+        "id": 108,
+        "create_date": "2020-10-29T04:50:50.011175",
+        "write_date": null,
+        "create_uid": 26,
+        "write_uid": null,
+        "name": 106,
+        "request": 55,
+        "patient_id": 116,
+        "urgent": false,
+        "state": "draft",
+        "date": "2020-10-30T04:00:59",
+        "doctor_id": 37,
+        "service": 116
+      },
+      {
+        "id": 14,
+        "create_date": "2020-09-24T09:42:00.535535",
+        "write_date": null,
+        "create_uid": 84,
+        "write_uid": null,
+        "name": 119,
+        "request": 14,
+        "patient_id": 38,
+        "urgent": false,
+        "state": "draft",
+        "date": "2020-09-24T09:37:06",
+        "doctor_id": 52,
+        "service": null
+      },
+      {
+        "id": 15,
+        "create_date": "2020-09-24T09:42:00.535535",
+        "write_date": null,
+        "create_uid": 84,
+        "write_uid": null,
+        "name": 91,
+        "request": 14,
+        "patient_id": 38,
+        "urgent": false,
+        "state": "draft",
+        "date": "2020-09-24T09:37:06",
+        "doctor_id": 52,
+        "service": null
+      },
+      {
+        "id": 16,
+        "create_date": "2020-09-24T09:42:00.535535",
+        "write_date": null,
+        "create_uid": 84,
+        "write_uid": null,
+        "name": 67,
+        "request": 14,
+        "patient_id": 38,
+        "urgent": false,
+        "state": "draft",
+        "date": "2020-09-24T09:37:06",
+        "doctor_id": 52,
+        "service": null
+      }
+    ]
+  },
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_patient_medication",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "start_treatment",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "adverse_reaction",
+        "type": "text"
+      },
+      {
+        "name": "end_treatment",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "course_completed",
+        "type": "boolean"
+      },
+      {
+        "name": "frequency_prn",
+        "type": "boolean"
+      },
+      {
+        "name": "frequency",
+        "type": "integer"
+      },
+      {
+        "name": "duration",
+        "type": "integer"
+      },
+      {
+        "name": "admin_times",
+        "type": "character varying"
+      },
+      {
+        "name": "healthprof",
+        "type": "integer"
+      },
+      {
+        "name": "qty",
+        "type": "integer"
+      },
+      {
+        "name": "common_dosage",
+        "type": "integer"
+      },
+      {
+        "name": "form",
+        "type": "integer"
+      },
+      {
+        "name": "route",
+        "type": "integer"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "medicament",
+        "type": "integer"
+      },
+      {
+        "name": "dose",
+        "type": "double precision"
+      },
+      {
+        "name": "dose_unit",
+        "type": "integer"
+      },
+      {
+        "name": "name",
+        "type": "integer"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "duration_period",
+        "type": "character varying"
+      },
+      {
+        "name": "frequency_unit",
+        "type": "character varying"
+      },
+      {
+        "name": "indication",
+        "type": "integer"
+      },
+      {
+        "name": "discontinued_reason",
+        "type": "character varying"
+      },
+      {
+        "name": "discontinued",
+        "type": "boolean"
+      },
+      {
+        "name": "newborn_id",
+        "type": "integer"
+      },
+      {
+        "name": "infusion_rate_units",
+        "type": "character varying"
+      },
+      {
+        "name": "infusion_rate",
+        "type": "double precision"
+      },
+      {
+        "name": "institution",
+        "type": "integer"
+      },
+      {
+        "name": "infusion",
+        "type": "boolean"
+      },
+      {
+        "name": "prescription",
+        "type": "integer"
+      }
+    ],
+    "row_count": 2,
+    "sample_data": [
+      {
+        "id": 6,
+        "create_date": "2020-04-09T09:19:40.522078",
+        "write_date": "2020-08-25T10:05:29.626988",
+        "create_uid": 1,
+        "write_uid": 1,
+        "start_treatment": "2020-04-08T21:00:00",
+        "adverse_reaction": "",
+        "end_treatment": "2020-04-15T21:00:00",
+        "course_completed": false,
+        "frequency_prn": false,
+        "frequency": null,
+        "duration": null,
+        "admin_times": "",
+        "healthprof": 1,
+        "qty": 1,
+        "common_dosage": 6,
+        "form": null,
+        "route": 2,
+        "is_active": true,
+        "medicament": 16,
+        "dose": 250.0,
+        "dose_unit": 2,
+        "name": null,
+        "notes": "",
+        "duration_period": "days",
+        "frequency_unit": "hours",
+        "indication": 7978,
+        "discontinued_reason": "",
+        "discontinued": false,
+        "newborn_id": null,
+        "infusion_rate_units": null,
+        "infusion_rate": null,
+        "institution": 1,
+        "infusion": false,
+        "prescription": null
+      },
+      {
+        "id": 5,
+        "create_date": "2016-10-21T17:55:46.116429",
+        "write_date": "2020-08-25T10:20:14.735000",
+        "create_uid": 1,
+        "write_uid": 1,
+        "start_treatment": "2016-10-21T17:53:27",
+        "adverse_reaction": null,
+        "end_treatment": null,
+        "course_completed": false,
+        "frequency_prn": false,
+        "frequency": null,
+        "duration": null,
+        "admin_times": null,
+        "healthprof": 1,
+        "qty": 1,
+        "common_dosage": null,
+        "form": null,
+        "route": null,
+        "is_active": true,
+        "medicament": 176,
+        "dose": null,
+        "dose_unit": null,
+        "name": null,
+        "notes": null,
+        "duration_period": "days",
+        "frequency_unit": "hours",
+        "indication": 6,
+        "discontinued_reason": null,
+        "discontinued": false,
+        "newborn_id": null,
+        "infusion_rate_units": null,
+        "infusion_rate": null,
+        "institution": 1,
+        "infusion": false,
+        "prescription": null
+      }
+    ]
+  },
+  {
+    "source_name": "MMT_DB",
+    "table_name": "gnuhealth_perinatal",
+    "table_type": "BASE TABLE",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "create_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "write_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "create_uid",
+        "type": "integer"
+      },
+      {
+        "name": "write_uid",
+        "type": "integer"
+      },
+      {
+        "name": "abruptio_placentae",
+        "type": "boolean"
+      },
+      {
+        "name": "abortion",
+        "type": "boolean"
+      },
+      {
+        "name": "stillbirth",
+        "type": "boolean"
+      },
+      {
+        "name": "placenta_retained",
+        "type": "boolean"
+      },
+      {
+        "name": "vaginal_tearing",
+        "type": "boolean"
+      },
+      {
+        "name": "prenatal_evaluations",
+        "type": "integer"
+      },
+      {
+        "name": "start_labor_mode",
+        "type": "character varying"
+      },
+      {
+        "name": "gestational_days",
+        "type": "integer"
+      },
+      {
+        "name": "laceration",
+        "type": "character varying"
+      },
+      {
+        "name": "hematoma",
+        "type": "character varying"
+      },
+      {
+        "name": "forceps",
+        "type": "boolean"
+      },
+      {
+        "name": "gravida_number",
+        "type": "integer"
+      },
+      {
+        "name": "admission_code",
+        "type": "character varying"
+      },
+      {
+        "name": "dystocia",
+        "type": "boolean"
+      },
+      {
+        "name": "fetus_presentation",
+        "type": "character varying"
+      },
+      {
+        "name": "episiotomy",
+        "type": "boolean"
+      },
+      {
+        "name": "name",
+        "type": "integer"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "admission_date",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "placenta_incomplete",
+        "type": "boolean"
+      },
+      {
+        "name": "healthprof",
+        "type": "integer"
+      },
+      {
+        "name": "institution",
+        "type": "integer"
+      }
+    ],
+    "row_count": 1,
+    "sample_data": [
+      {
+        "id": 1,
+        "create_date": "2013-10-01T19:53:05.391854",
+        "write_date": "2020-08-25T10:10:39.127820",
+        "create_uid": 1,
+        "write_uid": 1,
+        "abruptio_placentae": false,
+        "abortion": false,
+        "stillbirth": false,
+        "placenta_retained": false,
+        "vaginal_tearing": false,
+        "prenatal_evaluations": null,
+        "start_labor_mode": "v",
+        "gestational_days": null,
+        "laceration": null,
+        "hematoma": null,
+        "forceps": false,
+        "gravida_number": null,
+        "admission_code": "NT91246",
+        "dystocia": false,
+        "fetus_presentation": "cephalic",
+        "episiotomy": false,
+        "name": null,
+        "notes": "",
+        "admission_date": "2010-03-15T16:52:14",
+        "placenta_incomplete": false,
+        "healthprof": null,
+        "institution": null
+      }
+    ]
+  }
+]

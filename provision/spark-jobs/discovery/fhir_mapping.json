@@ -1,0 +1,255 @@
+{
+  "MAVIS": {},
+  "MMT_DB": {
+    "gnuhealth_activity_assessment": {},
+    "gnuhealth_ambulance_hp": {},
+    "gnuhealth_ambulance": {},
+    "gnuhealth_appointment": {},
+    "gnuhealth_appointment_medoc_encours": {},
+    "gnuhealth_body_function_assessment": {},
+    "gnuhealth_diagnostic_hypothesis": {},
+    "gnuhealth_disease_group_members": {},
+    "gnuhealth_environment_assessment": {},
+    "gnuhealth_health_service_line": {},
+    "gnuhealth_hospital_bed": {},
+    "gnuhealth_health_service": {},
+    "gnuhealth_hospital_or": {},
+    "gnuhealth_hospital_unit": {},
+    "gnuhealth_icu_apache2": {},
+    "gnuhealth_hospital_ward": {},
+    "gnuhealth_imaging_test_request": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "gnuhealth_immunization_schedule_line": {},
+    "gnuhealth_inpatient_meal_order": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_inpatient_medication": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_inpatient_medication_log": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_inpatient_registration": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_iss": {},
+    "gnuhealth_lab": {},
+    "gnuhealth_ophthalmology_evaluation": {},
+    "gnuhealth_newborn": {
+      "birth_date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "gnuhealth_orthanc_patient": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_orthanc_study": {},
+    "gnuhealth_paper_archive": {},
+    "gnuhealth_patient": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_ambulatory_care_medicament": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_ambulatory_care_vaccine": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_amputation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_colposcopy_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_disease": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_evaluation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_ecg": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_family_diseases": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_genetic_risk": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_lab_test": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "gnuhealth_patient_mammography_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_medication": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_pap_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_pregnancy": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_prenatal_evaluation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_prothesis": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_psc": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_recreational_drugs": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_menstrual_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_patient_rounding_vaccine": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_pol": {},
+    "gnuhealth_prescription_line": {},
+    "gnuhealth_perinatal": {},
+    "gnuhealth_puerperium_monitor": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "gnuhealth_protein_disease": {},
+    "gnuhealth_prescription_order": {},
+    "gnuhealth_rcri": {},
+    "gnuhealth_secondary_condition": {},
+    "gnuhealth_sequence_setup": {},
+    "gnuhealth_ses_assessment": {},
+    "gnuhealth_signs_and_symptoms": {},
+    "gnuhealth_vaccination": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "gnuhealth_surgery": {},
+    "account_invoice": {},
+    "gnuhealth_healthprofessional": {},
+    "party_party": {},
+    "product_product": {},
+    "gnuhealth_patient_disability_assessment": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_ambulance_support": {},
+    "gnuhealth_support_request": {},
+    "gnuhealth_patient_ambulatory_care": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_medicament": {},
+    "gnuhealth_body_structure_assessment": {},
+    "gnuhealth_imaging_test_result": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "gnuhealth_patient_rounding": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "gnuhealth_immunization_schedule_dose": {}
+  }
+}

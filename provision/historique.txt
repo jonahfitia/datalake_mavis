@@ -77,3 +77,34 @@ execution en arrièe plan
 _______________________________________________________________________________________________
 pip freeze > requirements.txt
 pour avoir toutes les listes des librairies installé pour les installer plus tard
+_______________________________________________________________________________________________
+SCHEMA PIVOT
+| Domaine                  | Ressource FHIR                                   | Exemple de données à mapper depuis RMA                          |
+| ------------------------ | ------------------------------------------------ | --------------------------------------------------------------- |
+| **Patient**              | `Patient`                                        | Nom, prénom, sexe, date de naissance, identifiant unique        |
+| **Rencontre médicale**   | `Encounter`                                      | Type de consultation, date/heure, service, CHRD2                |
+| **Observation clinique** | `Observation`                                    | Tension, poids, résultats labo, diagnostics                     |
+| **Diagnostic**           | `Condition`                                      | Codes CIM10, libellé diagnostic                                 |
+| **Acte médical**         | `Procedure`                                      | Chirurgie, accouchement, vaccination                            |
+| **Médication**           | `MedicationRequest` / `MedicationAdministration` | Ordonnances, traitements administrés                            |
+| **Examen de labo**       | `DiagnosticReport`                               | Résultats de laboratoire (tests sanguins, VIH, paludisme, etc.) |
+| **Organisation**         | `Organization`                                   | Infos sur l’hôpital / CHRD2                                     |
+| **Praticien**            | `Practitioner`                                   | Médecin, infirmier, sage-femme                                  |
+| **Vaccination**          | `Immunization`                                   | PEV, VAT, etc.                                                  |
+| **Finances**             | `Claim`                                          | Recettes, facturation, couverture CNSS                          |
+
+_______________________________________________________________________________________________
+Ressources principales de FHIR
+Voici les ressources principales que tu rencontreras souvent en FHIR :
+Patient : Informations sur le patient (nom, adresse, etc.)
+Observation : Mesures cliniques (par exemple, température, poids, résultats de laboratoire)
+Practitioner : Données sur le professionnel de santé (médecin, infirmière, etc.)
+Encounter : Détails sur une rencontre avec le patient (hospitalisation, consultation)
+Medication : Médicaments prescrits et administrés
+Condition : Diagnostic de santé d’un patient (par exemple, diabète, hypertension)
+Procedure : Procédures médicales effectuées
+AllergyIntolerance : Allergies et intolérances du patient
+
+______________________________________________________________________________________________
+TEMPS D'execution
+discovery.py : 
