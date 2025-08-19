@@ -124,13 +124,14 @@ def test_ssh_connection(host, port, user, private_key=None, password=None, remot
 def discover_postgres(source, spark, source_index):
     source_name = source["name"]
     logging.info(f"Début de la découverte pour {source_name}")
-    ssh_cfg = source.get("ssh", {})
+    ssh_cfg = source.get("ssh", {}) or {}
     db_cfg = source["db"]
     tables_info = []
     failed_tables = []
     cache_path = f"/home/vagrant/datalake-mavis/provision/spark-jobs/metadata/{source_name}_discovery_report.json"
     failed_tables_path = f"/home/vagrant/datalake-mavis/provision/spark-jobs/metadata/{source_name}_failed_tables.json"
 
+    # Cache
     if os.path.exists(cache_path):
         try:
             with open(cache_path, "r") as f:
@@ -140,18 +141,23 @@ def discover_postgres(source, spark, source_index):
 
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
 
+    tunnel = None
     try:
+        # Secrets (priorité aux variables d'env)
         ssh_password = os.getenv(f"SSH_PASSWORD_{source_name}", ssh_cfg.get("password"))
-        db_password = os.getenv(f"POSTGRES_PASSWORD_{source_name}", db_cfg.get("password"))
-        
+        db_password  = os.getenv(f"POSTGRES_PASSWORD_{source_name}", db_cfg.get("password"))
+
         logging.info(f"SSH Password défini: {bool(ssh_password)}")
         logging.info(f"DB Password défini: {bool(db_password)}")
 
         if not db_password:
             raise ValueError(f"Mot de passe de la base de données manquant pour {source_name}")
 
-        tunnel = None
-        if ssh_cfg and ssh_cfg.get("host") and ssh_cfg.get("port") and ssh_cfg.get("user"):
+        # Décider du mode de connexion
+        use_ssh = bool(ssh_cfg.get("host") and ssh_cfg.get("port") and ssh_cfg.get("user"))
+
+        if use_ssh:
+            # Test SSH et accessibilité du port distant
             success, error_msg = test_ssh_connection(
                 ssh_cfg["host"], ssh_cfg["port"], ssh_cfg["user"],
                 password=ssh_password, remote_host=db_cfg["host"], remote_port=db_cfg["port"]
@@ -160,61 +166,82 @@ def discover_postgres(source, spark, source_index):
                 tables_info.append({"source_name": source_name, "error": error_msg})
                 return tables_info
 
+            # Démarrer le tunnel (laisser le port local en auto pour éviter les conflits)
             tunnel = SSHTunnelForwarder(
                 ssh_address_or_host=(ssh_cfg["host"], ssh_cfg["port"]),
                 ssh_username=ssh_cfg["user"],
                 ssh_password=ssh_password,
                 remote_bind_address=(db_cfg["host"], db_cfg["port"]),
-                local_bind_address=('127.0.0.1', 5433),  # Port fixe pour éviter conflits
-                set_keepalive=30
+                local_bind_address=("127.0.0.1", 0),  # port auto
+                set_keepalive=60
             )
             tunnel.start()
-            logging.info(f"Tunnel SSH établi sur port local {tunnel.local_bind_port}")
-            url = f"jdbc:postgresql://127.0.0.1:{tunnel.local_bind_port}/{db_cfg['database']}?socketTimeout=600&connectTimeout=120&sslmode=disable&loglevel=2"
+            local_port = tunnel.local_bind_port
+            logging.info(f"Tunnel SSH établi sur port local {local_port}")
+
+            # Test du port local du tunnel
+            try:
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sock.settimeout(10)
+                sock.connect(("127.0.0.1", local_port))
+                sock.close()
+                logging.info(f"Connexion au port local {local_port} réussie")
+            except Exception as e:
+                logging.error(f"Échec de la connexion au port local {local_port}: {str(e)}")
+                raise
+
+            jdbc_host, jdbc_port = "127.0.0.1", local_port
+
         else:
-            url = f"jdbc:postgresql://{db_cfg['host']}:{db_cfg['port']}/{db_cfg['database']}?socketTimeout=600&connectTimeout=120&sslmode=disable&loglevel=2"
+            # Connexion directe → tester l’hôte/port de la DB
+            try:
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sock.settimeout(10)
+                sock.connect((db_cfg["host"], db_cfg["port"]))
+                sock.close()
+                logging.info(f"Connexion directe réussie à {db_cfg['host']}:{db_cfg['port']}")
+            except Exception as e:
+                logging.error(f"Échec de la connexion directe à {db_cfg['host']}:{db_cfg['port']}: {str(e)}")
+                raise
+
+            jdbc_host, jdbc_port = db_cfg["host"], db_cfg["port"]
+
+        # URL JDBC selon le mode
+        url = (
+            f"jdbc:postgresql://{jdbc_host}:{jdbc_port}/{db_cfg['database']}"
+            f"?socketTimeout=600&connectTimeout=120&sslmode=disable&loglevel=2"
+        )
 
         properties = {
             "user": db_cfg["user"],
             "password": db_password,
             "driver": "org.postgresql.Driver",
-            "connectTimeout": "120",
-            "socketTimeout": "600"
+            "connectTimeout": "300",
+            "socketTimeout": "900",
         }
 
-        # Test de connexion au port local
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(10)
-            sock.connect(('127.0.0.1', tunnel.local_bind_port))
-            sock.close()
-            logging.info(f"Connexion au port local {tunnel.local_bind_port} réussie")
-        except Exception as e:
-            logging.error(f"Échec de la connexion au port local {tunnel.local_bind_port}: {str(e)}")
-            raise
-
+        # --- Découverte des tables
         tables_query = """
             (SELECT table_name, table_type 
-            FROM information_schema.tables 
-            WHERE table_schema = 'public' 
-            AND table_type IN ('BASE TABLE', 'VIEW')
-            ) t
+             FROM information_schema.tables 
+             WHERE table_schema = 'public' 
+               AND table_type IN ('BASE TABLE', 'VIEW')) t
         """
         logging.info("Exécution de la requête pour récupérer toutes les tables...")
         df_tables = spark.read.jdbc(url=url, table=tables_query, properties=properties)
-        tables = [{"table_name": row["table_name"], "table_type": row["table_type"]} for row in df_tables.collect()]
+        tables = [{"table_name": r["table_name"], "table_type": r["table_type"]} for r in df_tables.collect()]
         logging.info(f"Nombre total de tables trouvées: {len(tables)}")
 
         columns_query = """
-            (SELECT table_name, column_name 
-            FROM information_schema.columns 
-            WHERE table_schema = 'public'
-            ) t
+            (SELECT table_name, column_name
+             FROM information_schema.columns 
+             WHERE table_schema = 'public') t
         """
         df_columns = spark.read.jdbc(url=url, table=columns_query, properties=properties)
-        columns_data = [{"table_name": row["table_name"], "column_name": row["column_name"]} for row in df_columns.collect()]
+        columns_data = [{"table_name": r["table_name"], "column_name": r["column_name"]} for r in df_columns.collect()]
 
-        tables_to_include = source.get("tables_to_include", [])
+        # Filtrage TALN / liste d'inclusion
+        tables_to_include = source.get("tables_to_include", []) or []
         disable_taln = source.get("disable_taln", False)
         if tables_to_include:
             relevant_tables = [t["table_name"] for t in tables if t["table_name"] in tables_to_include]
@@ -222,56 +249,76 @@ def discover_postgres(source, spark, source_index):
             relevant_tables = select_relevant_tables(tables, columns_data, threshold=0.6, disable_taln=disable_taln)
         logging.info(f"Tables pertinentes après TALN: {relevant_tables}")
 
+        # --- Parcours des tables pertinentes
         batch_size = 20
         for i in range(0, len(relevant_tables), batch_size):
             batch_tables = relevant_tables[i:i + batch_size]
-            logging.info(f"Traitement du lot {i//batch_size + 1}/{len(relevant_tables)//batch_size + 1}")
+            logging.info(f"Traitement du lot {i//batch_size + 1}/{(len(relevant_tables)-1)//batch_size + 1}")
             for table_name in batch_tables:
                 logging.info(f"Traitement de la table: {table_name}")
                 try:
+                    # Si tunnel utilisé, s'assurer qu'il est actif
                     if tunnel and not tunnel.is_active:
-                        logging.error(f"Tunnel SSH inactif pour {table_name}")
+                        logging.error(f"Tunnel SSH inactif pour {table_name}, redémarrage…")
                         tunnel.start()
                         logging.info("Tunnel SSH redémarré")
-                    
+
                     time.sleep(1)
-                    
+
+                    # Colonnes
                     df_cols = spark.read.jdbc(
                         url=url,
-                        table=f"(SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '{table_name}' ORDER BY ordinal_position) t",
+                        table=f"(SELECT column_name, data_type FROM information_schema.columns "
+                              f"WHERE table_schema='public' AND table_name = '{table_name}' "
+                              f"ORDER BY ordinal_position) t",
                         properties=properties
                     )
-                    columns = [{"name": row["column_name"], "type": str(row["data_type"])} for row in df_cols.collect()]
+                    columns = [{"name": r["column_name"], "type": str(r["data_type"])} for r in df_cols.collect()]
                     logging.info(f"Colonnes pour {table_name}: {columns}")
 
-                    count_query = f"(SELECT COUNT(*) AS row_count FROM {table_name}) t"
+                    # Estimation/compte des lignes
+                    count_query = f"""
+                        (SELECT CASE 
+                            WHEN reltuples > 100000 THEN reltuples::bigint 
+                            ELSE (SELECT COUNT(*) FROM public."{table_name}") 
+                         END AS row_count 
+                         FROM pg_class 
+                         WHERE relname = '{table_name}'
+                           AND relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = 'public')) t
+                    """
                     df_count = spark.read.jdbc(url=url, table=count_query, properties=properties)
                     row_count = df_count.collect()[0]["row_count"] if df_count.count() > 0 else 0
                     logging.info(f"Nombre de lignes pour {table_name}: {row_count}")
 
-                    if table_name == "sale_order_line" or row_count > 100000:
+                    # Lecture des données (partitionnée si volumineuse)
+                    if table_name == "sale_order_line" or (row_count and row_count > 100000):
                         logging.info(f"Partitionnement de la table {table_name} avec {row_count} lignes")
                         df_data = spark.read.jdbc(
                             url=url,
-                            table=table_name,
-                            column="id",  # Ajustez selon la clé primaire
+                            table=f'public."{table_name}"',
+                            column="id",        # TODO: adapter si la PK n'est pas "id"
                             lowerBound=1,
-                            upperBound=1000000,
+                            upperBound=max(int(row_count), 1000000),
                             numPartitions=10,
                             properties=properties
                         )
                     else:
-                        df_data = spark.read.jdbc(url=url, table=table_name, properties=properties)
+                        df_data = spark.read.jdbc(url=url, table=f'public."{table_name}"', properties=properties)
+
                     sample_data = df_data.limit(10).collect()
 
+                    # Ecriture HDFS
                     try:
-                        df_data.write.mode("overwrite").parquet(f"hdfs://localhost:9000/datalake/raw/{source['name']}/{table_name}")
+                        df_data.write.mode("overwrite").parquet(
+                            f"hdfs://localhost:9000/datalake/raw/{source_name}/{table_name}"
+                        )
                     except Exception as e:
                         logging.error(f"Échec de l'écriture en Parquet pour {table_name}: {str(e)}")
-                        continue
+                        # On continue quand même le reporting
+                        pass
 
                     tables_info.append({
-                        "source_name": source["name"],
+                        "source_name": source_name,
                         "table_name": table_name,
                         "table_type": next(t["table_type"] for t in tables if t["table_name"] == table_name),
                         "columns": columns,
@@ -281,22 +328,26 @@ def discover_postgres(source, spark, source_index):
                     logging.info(f"Table {table_name} traitée: {len(columns)} colonnes, {row_count} lignes")
                 except Exception as e:
                     logging.error(f"Erreur lors du traitement de la table {table_name}: {str(e)}")
-                    failed_tables.append({"source_name": source["name"], "table_name": table_name, "error": str(e)})
-                    tables_info.append({"source_name": source["name"], "table_name": table_name, "error": str(e)})
+                    failed_tables.append({"source_name": source_name, "table_name": table_name, "error": str(e)})
+                    tables_info.append({"source_name": source_name, "table_name": table_name, "error": str(e)})
                     continue
 
-        if tunnel:
-            tunnel.stop()
-            logging.info(f"Tunnel SSH fermé pour {source['name']}")
-
     except Exception as e:
-        logging.error(f"Erreur de connexion à {source['name']}: {str(e)}")
-        tables_info.append({"source_name": source["name"], "error": str(e)})
+        logging.error(f"Erreur de connexion à {source_name}: {str(e)}")
+        tables_info.append({"source_name": source_name, "error": str(e)})
+    finally:
+        if tunnel:
+            try:
+                tunnel.stop()
+                logging.info(f"Tunnel SSH fermé pour {source_name}")
+            except Exception as e:
+                logging.warning(f"Erreur lors de la fermeture du tunnel pour {source_name}: {str(e)}")
 
+    # Sauvegardes cache & erreurs
     try:
         with open(cache_path, "w") as f:
             json.dump(tables_info, f, indent=2, default=json_serial)
-        logging.info(f"Cache enregistré pour {source['name']}: {cache_path}")
+        logging.info(f"Cache enregistré pour {source_name}: {cache_path}")
     except Exception as e:
         logging.error(f"Erreur lors de l'enregistrement du cache pour {source_name}: {str(e)}")
 
@@ -308,6 +359,7 @@ def discover_postgres(source, spark, source_index):
         logging.error(f"Erreur lors de l'enregistrement des tables échouées pour {source_name}: {str(e)}")
 
     return tables_info
+
 
 @retry(stop_max_attempt_number=3, wait_fixed=2000)
 def discover_excel(source, spark):

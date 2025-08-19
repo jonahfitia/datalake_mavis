@@ -104,7 +104,9 @@ Medication : Médicaments prescrits et administrés
 Condition : Diagnostic de santé d’un patient (par exemple, diabète, hypertension)
 Procedure : Procédures médicales effectuées
 AllergyIntolerance : Allergies et intolérances du patient
-
 ______________________________________________________________________________________________
 TEMPS D'execution
 discovery.py : 
+create-pivot_table.py : 13:16
+______________________________________________________________________________________________
+hdfs dfs -mkdir -p /datalake/pivot

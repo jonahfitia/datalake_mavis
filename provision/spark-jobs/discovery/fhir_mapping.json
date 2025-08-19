@@ -1,5 +1,354 @@
 {
-  "MAVIS": {},
+  "MAVIS": {
+    "account_move": {},
+    "lab_test_critearea": {},
+    "imaging_device": {},
+    "img_result_anterieur_wizard": {},
+    "lab_usual_reference": {},
+    "acs_imaging_request": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_medical_questionnaire": {},
+    "acs_nurse_ward_round": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_ophthalmology_evaluation": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_ot_booking": {},
+    "acs_laboratory_request": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_physiotherapy": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_plan_vaccinations": {},
+    "acs_patient_laboratory_sample": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "acs_vaccination": {},
+    "acs_soins_infirmier": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_video_call": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "patient_creation_wizard": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "appointment_purpose": {},
+    "certificate_management": {},
+    "diseases_appointment_rel": {},
+    "disease_gene": {},
+    "diseases_category": {},
+    "diseases_img_rel": {},
+    "health_service_create_wizard": {},
+    "health_service_create_wizard_hms_patient_rel": {},
+    "hms_appointment": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "hms_appointment_sonography_follical": {},
+    "hms_appointment_sonography_obstetric": {},
+    "hms_patient_insurance": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_disease": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_family_diseases": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_genetic_risk": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_lab_req_rel": {},
+    "hms_patient_medication": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_menstrual_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_colposcopy_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_imaging_req_rel": {},
+    "hms_patient_mammography_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_surgery_template": {},
+    "hms_patient_pregnancy": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_prenatal_evaluation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "acs_health_service": {},
+    "iap_account": {},
+    "imaging_group": {},
+    "imaging_protocol": {},
+    "inpatient_checklist": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "imaging_consumable_line": {},
+    "maintenance_equipment": {},
+    "medicament_group": {},
+    "medicament_line": {},
+    "patient_imaging_test": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "patint_department_rel": {},
+    "patient_laboratory_test": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "physician_degree": {},
+    "physician_specialty": {},
+    "pre_operative_check_list": {},
+    "service_wizard": {},
+    "res_partner": {},
+    "sale_order_line": {},
+    "stock_move": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_health_service_line_cancel_invoice_wizard_rel": {},
+    "result_anterieur_wizard": {},
+    "systemic_examination": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "transfer_accommodation": {},
+    "ward_rounds": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "vaccination_group": {},
+    "service_line_category_wizard": {},
+    "res_company": {},
+    "ir_attachment": {},
+    "hr_department": {},
+    "hms_insurance_claim": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_hospitalization": {},
+    "hms_physician": {},
+    "prescription_order": {},
+    "acs_hms_subscription": {},
+    "hms_surgery": {},
+    "helpdesk_support": {},
+    "acs_ambulance_service": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_blood_issuance": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_blood_requisition": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_child_birth": {
+      "birth_date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_consent_form": {},
+    "acs_dental_procedure": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "hms_diseases": {},
+    "hms_treatment": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "acs_dental_questionnaire": {},
+    "acs_family_member": {},
+    "acs_hms_waiting_screen": {},
+    "acs_health_service_hms_physician_rel": {},
+    "acs_health_service_line": {},
+    "acs_hms_contract": {},
+    "hospital_building": {},
+    "hospital_bed": {},
+    "patient_death_register": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hospitalization_package": {},
+    "hospital_ward": {},
+    "acs_imaging": {},
+    "acs_laboratory": {},
+    "laboratory_group": {},
+    "medical_representative": {},
+    "acs_patient_evaluation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      },
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "appointment_cabin": {},
+    "appointment_procedure_ids_rel": {},
+    "appointment_schedule": {},
+    "appointment_schedule_slot": {},
+    "appointment_scheduler_wizard": {},
+    "calendar_event": {},
+    "hms_appointment_sonography_pelvis": {},
+    "hms_diseases_ophthalmology_rel": {},
+    "hms_patient_pap_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient_service_req_rel": {},
+    "hms_perinatal": {},
+    "hms_perinatal_monitor": {
+      "date": {
+        "fhir_resource": "Patient",
+        "fhir_field": "birthDate"
+      }
+    },
+    "hms_physician_patient_laboratory_test_rel": {},
+    "ir_server_object_lines": {},
+    "laboratory_request_line": {},
+    "laboratory_result_line": {},
+    "past_surgeries": {},
+    "patient_accommodation_history": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "patient_laboratory_test_res_partner_rel": {},
+    "patient_medical_alert_rel": {},
+    "patient_tag_rel": {},
+    "pre_operative_check_list_template": {},
+    "pre_ward_check_list": {},
+    "prescription_line": {},
+    "product_attribute_custom_value": {},
+    "rel_doc_pat": {},
+    "product_template": {},
+    "file_patient": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_patient": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "create_patient_health_service": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "patient_creation_confirmation": {
+      "id": {
+        "fhir_resource": "Patient",
+        "fhir_field": "id"
+      }
+    },
+    "hms_consumable_line": {}
+  },
   "MMT_DB": {
     "gnuhealth_activity_assessment": {},
     "gnuhealth_ambulance_hp": {},
