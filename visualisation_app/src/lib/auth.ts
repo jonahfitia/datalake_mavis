@@ -1,63 +1,37 @@
 // src/lib/auth.ts
-import NextAuth from "next-auth"
-import Credentials from "next-auth/providers/credentials"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
-import bcrypt from "bcryptjs"
+import NextAuth, { NextAuthOptions } from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
+// ou GoogleProvider, GitHubProvider etc.
 
-const prisma = new PrismaClient()
-
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" },
+export const authOptions: NextAuthOptions = {
   providers: [
-    Credentials({
+    CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "jonah@example.com" },
+        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
-          throw new Error("Email and password are required")
+        // 👉 ta logique de login
+        if (
+          credentials?.username === "jonah" &&
+          credentials?.password === "1234"
+        ) {
+          return { id: "1", name: "Jonah", email: "jonah@example.com" }
         }
-
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        })
-
-        if (!user || !user.password) throw new Error("Invalid email or password")
-
-        const isValid = await bcrypt.compare(credentials.password, user.password)
-        if (!isValid) throw new Error("Invalid email or password")
-
-        return {
-          id: user.id.toString(),
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-        }
+        return null
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
-        token.firstName = user.firstName
-        token.lastName = user.lastName
-        token.email = user.email
-      }
-      return token
-    },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string
-        session.user.firstName = token.firstName as string | null | undefined
-        session.user.lastName = token.lastName as string | null | undefined
-        session.user.email = token.email as string
-      }
-      return session
-    },
+  pages: {
+    signIn: "/login",
   },
-})
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+}
+
+// Ici on exporte aussi le handler (utile pour l'API route)
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }

@@ -251,22 +251,25 @@ for source_name in dfs:
                         logging.info(f"Ajout de hiv depuis {col_name} (temp: {temp_col_name})")
         if mapped_cols:
             df_mapped = df.select(mapped_cols)
-            logging.info(f"Colonnes mappées pour {source_name}.{table_name}: {mapped_cols}")
-            if "patient_id" not in mapped_cols:
+            logging.info(f"Colonnes mappées pour {source_name}.{table_name}: {[c._jc.toString() for c in mapped_cols]}")
+            # Vérifier si une colonne avec l'alias patient_id existe
+            has_patient_id = any(c._jc.toString().endswith('AS `patient_id`') for c in mapped_cols)
+            if not has_patient_id:
                 logging.warning(f"patient_id absent dans les colonnes mappées pour {source_name}.{table_name}")
-            if pivot_data is None:
-                if "patient_id" in mapped_cols:
+            elif pivot_data is None:
+                # Initialisation dynamique avec la première table contenant patient_id
+                if "patient" in table_name.lower() or patient_id_col is not None:
                     pivot_data = df_mapped
-                    logging.info(f"Initialisation de pivot_data avec {source_name}.{table_name}: {pivot_data.columns}")
+                    pivot_data_initialized = True
+                    logging.info(f"Initialisation de pivot_data avec {source_name}.{table_name}: {df_mapped.columns}")
                 else:
-                    logging.warning(f"Ignorer {source_name}.{table_name} pour l'initialisation de pivot_data (patient_id absent)")
+                    logging.warning(f"Ignorer {source_name}.{table_name} pour l'initialisation de pivot_data")
             else:
-                if "patient_id" in mapped_cols:
-                    pivot_data = pivot_data.join(broadcast(df_mapped), "patient_id", "left")
-                    logging.info(f"Colonnes après jointure avec {source_name}.{table_name}: {pivot_data.columns}")
-        else:
-            logging.warning(f"Ignorer la jointure pour {source_name}.{table_name} (patient_id absent)")
-            # Nettoyage immédiat après chaque jointure
+                pivot_data = pivot_data.join(broadcast(df_mapped), "patient_id", "left")
+                logging.info(f"Colonnes après jointure avec {source_name}.{table_name}: {pivot_data.columns}")
+        
+        # Nettoyage uniquement si pivot_data est défini
+        if pivot_data is not None:
             for col_name in pivot_schema.names:
                 if col_name != "patient_id" and col_name != "diagnosis_code":
                     col_variants = [c for c in pivot_data.columns if c.startswith(f"{col_name}_") or c == col_name]
@@ -288,7 +291,9 @@ for source_name in dfs:
                 logging.info(f"Renommage de {diagnosis_code_variants[0]} en diagnosis_code")
             existing_columns.update([c for c in pivot_data.columns if c != "patient_id"])
             logging.info(f"Colonnes après nettoyage pour {source_name}.{table_name}: {pivot_data.columns}")
-
+        else:
+            logging.warning(f"pivot_data non initialisé après traitement de {source_name}.{table_name}")
+            
 # Déduplication si pivot_data existe
 if pivot_data:
     # Déduplication par name et birth_date

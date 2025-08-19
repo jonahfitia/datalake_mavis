@@ -82,7 +82,7 @@ for source_name in report:
                 if "diagnosis" in col_name or "disease" in col_name:
                     fhir_mapping[source_name][table_name][col_name] = {
                         "fhir_resource": "Condition",
-                        "fhir_field": "code"
+                        "fhir_field": "code",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
                     }
             elif fhir_field == "name" and "string" in col_type:
                 if "ward" in col_name or "department" in col_name:

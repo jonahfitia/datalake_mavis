@@ -1,24 +1,17 @@
-// src/app/dashboard/page.tsx
-"use client"
+// app/dashboard/page.tsx
+import DashboardClient from "./DashboardClient";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation";
 
-import { useSession, signIn, signOut } from "next-auth/react"
-
-export default function Dashboard() {
-  const { data: session } = useSession()
+export default async function DashboardPage() {
+  const session = await getServerSession(authOptions);
 
   if (!session) {
-    return (
-      <div>
-        <p>Pas connecté</p>
-        <button onClick={() => signIn()}>Se connecter</button>
-      </div>
-    )
+    // Rediriger vers la page login si pas connecté
+    redirect("/auth/login");
+    // redirect("/dashboard");
   }
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
-      <p>Connecté en tant que {session.user?.email}</p>
-      <button onClick={() => signOut()}>Se déconnecter</button>
-    </div>
-  )
+  return <DashboardClient userName={session.user.email ?? "Utilisateur"} />;
 }
