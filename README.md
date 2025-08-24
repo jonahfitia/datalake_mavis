@@ -87,4 +87,6 @@ STAR TOPOLOGY
 
 ---
 
+Backend : Pipeline automatisé (batch quotidien/hebdomadaire), ingestion + normalisation, stockage (Hive/Mongo/HBase).
 
+Frontend : Graphiques dynamiques basés sur schéma pivot, actualisation via API (pas forcément temps réel). 
